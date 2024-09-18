@@ -106,7 +106,7 @@ export function GameCard({ Name, Rate, Price }: GameCardProps) {
 
 			return () => clearTimeout(timer);
 		}
-	}, [addingToCard]);
+	}, [addingToCard, Name, dispatch]);
 
 	const handleCloseSnackbar = () => {
 		setOpenSnackbar(false);
