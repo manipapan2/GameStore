@@ -3,7 +3,7 @@ This is a game store and also a dashboard to download and manage games
 
 
 <p align="center">
-  <img src="./GameStore.png" alt="GameStore Screenshot" width="700">
+  <img src="https://cdn.microlink.io/2.0/screenshot?url=https://amirkabir.vercel.app" alt="GameStore Screenshot" width="700">
 </p>
 
 
