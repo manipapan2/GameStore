@@ -5,7 +5,7 @@ import Header from "@/Components/UI/Header";
 import Panel from "@/Components/UI/Panel";
 import ReactQueryProvider from "@/Components/Hooks/ReactQuery/Providers";
 import { Box } from "@mui/material";
-import "./globals.css";
+import "@/app/styles/globals.css";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
