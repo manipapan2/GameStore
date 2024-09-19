@@ -1,5 +1,5 @@
-import { Button } from "@/Components/UI/button";
 import GameCards from "@/Components/UI/GameCards";
+import { Button } from "@mui/material";
 
 
 

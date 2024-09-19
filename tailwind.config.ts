@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+	preflight: false,
     darkMode: ["class"],
     mode: "jit",
 	content: [
