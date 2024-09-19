@@ -81,6 +81,7 @@ export default function GameCards() {
 				/>
 			))}
 			<Typography variant="h1" className="text-red-700">TTTTTTTTTTTT</Typography>
+			<h2 className="text-purple-500">ttttttttttttt</h2>
 		</Box>
 	);
 }
