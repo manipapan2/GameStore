@@ -1,4 +1,3 @@
-import 'tailwindcss/tailwind.css';
 import type { Metadata } from "next";
 import ReduxProvider from "@/Components/Hooks/Redux/Provider";
 import localFont from "next/font/local";

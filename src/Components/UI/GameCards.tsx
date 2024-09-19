@@ -79,6 +79,7 @@ export default function GameCards() {
 					Price={game.Price}
 				/>
 			))}
+			<Typography variant="h1" className="text-red-700">TTTTTTTTTTTT</Typography>
 		</Box>
 	);
 }
