@@ -8,7 +8,7 @@ export default function Home() {
 		<>
 			<GameCards />
 			<p className="bg-red-400 text-green-600">test</p>
-			<Button className="text-green-500">Test</Button>
+			<Button variant="contained" className="text-green-500">Test</Button>
 		</>
 	);
 }
