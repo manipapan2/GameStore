@@ -173,13 +173,19 @@ export function GameCard({ Name, Rate, Price }: GameCardProps) {
 						loadingIndicator={
 							<CircularProgress
 								size={24}
-								className="text-black"
+								className="!text-black"
 							/>
 						}
-						className="cursor-pointer text-white"
+						className="cursor-pointer !text-white"
 						sx={{
 							bgcolor: added ? "green" : "var(--Purple)",
 							pointerEvents: added ? "none" : "auto",
+							"& .MuiLoadingButton-loadingIndicator": {
+								display: "flex",
+							},
+							"& .MuiLoadingButton-label": {
+								opacity: addingToCard ? "0" : "1",
+							},
 						}}
 					>
 						{added ? (
@@ -192,6 +198,7 @@ export function GameCard({ Name, Rate, Price }: GameCardProps) {
 						)}
 						{added ? "Added To Cart" : "Add To Cart"}
 					</LoadingButton>
+
 					<Typography color="white">
 						{Price === 0 ? "Free" : `${Price}$`}
 					</Typography>
