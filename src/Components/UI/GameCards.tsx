@@ -141,7 +141,7 @@ export function GameCard({ Name, Rate, Price }: GameCardProps) {
 
 			<Box className="relative aspect-video w-full">
 				<Image
-					src={`/Img/${Name.replace(/\s+/g, "")}.png`} // Removing spaces from the name
+					src={`/Img/Valorant.png`}
 					alt={`${Name} Image`}
 					layout="fill"
 					objectFit="cover"
