@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ReduxProvider from "@/components/Hooks/Redux/Provider";
 import localFont from "next/font/local";
 import Header from "@/components/UI/Header";
+//test
 import Panel from "@/components/UI/Panel";
 import ReactQueryProvider from "@/components/Hooks/ReactQuery/Providers";
 import { Box } from "@mui/material";
