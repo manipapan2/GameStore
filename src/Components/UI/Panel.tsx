@@ -2,8 +2,8 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/Components/Hooks/Redux/store";
-import { toggleMenu } from "@/Components/Hooks/Redux/booleanSlice";
+import { RootState, AppDispatch } from "@/components/Hooks/Redux/store";
+import { toggleMenu } from "@/components/Hooks/Redux/booleanSlice";
 import HomeIcon from "@mui/icons-material/Home";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import { BiLibrary } from "react-icons/bi";

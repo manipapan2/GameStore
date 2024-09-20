@@ -1,6 +1,6 @@
 "use client";
 import { Provider } from "react-redux";
-import store from "@/Components/Hooks/Redux/store";
+import store from "@/components/Hooks/Redux/store";
 import React from "react";
 
 export default function ReduxProvider({

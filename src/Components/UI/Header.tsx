@@ -1,8 +1,8 @@
 "use client";
 import { Box, AppBar, IconButton, Badge, Avatar } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleMenu } from "@/Components/Hooks/Redux/booleanSlice";
-import { RootState, AppDispatch } from "@/Components/Hooks/Redux/store";
+import { toggleMenu } from "@/components/Hooks/Redux/booleanSlice";
+import { RootState, AppDispatch } from "@/components/Hooks/Redux/store";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";

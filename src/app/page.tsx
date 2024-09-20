@@ -1,4 +1,4 @@
-import GameCards from "@/Components/UI/GameCards";
+import GameCards from "@/components/UI/GameCards";
 // import { Button } from "@mui/material";
 
 export default function Home() {
