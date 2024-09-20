@@ -16,7 +16,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import Image from "next/image";
 import { LoadingButton } from "@mui/lab";
 import { useDispatch } from "react-redux";
-import { addItem } from "@/Components/Hooks/Redux/itemsSlice";
+import { addItem } from "@/components/Hooks/Redux/itemsSlice";
 
 interface Game {
 	Id: number;

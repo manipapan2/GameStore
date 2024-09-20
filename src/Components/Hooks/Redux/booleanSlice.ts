@@ -5,7 +5,7 @@ interface BooleanState {
 }
 
 const initialState: BooleanState = {
-  value: true,
+  value: false,
 };
 
 const booleanSlice = createSlice({

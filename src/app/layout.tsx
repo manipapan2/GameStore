@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import ReduxProvider from "@/Components/Hooks/Redux/Provider";
+import ReduxProvider from "@/components/Hooks/Redux/Provider";
 import localFont from "next/font/local";
-import Header from "@/Components/UI/Header";
-import Panel from "@/Components/UI/Panel";
-import ReactQueryProvider from "@/Components/Hooks/ReactQuery/Providers";
+import Header from "@/components/UI/Header";
+import Panel from "@/components/UI/Panel";
+import ReactQueryProvider from "@/components/Hooks/ReactQuery/Providers";
 import { Box } from "@mui/material";
 import "@/styles/globals.css";
 
@@ -36,9 +36,11 @@ export default function RootLayout({
 				<ReduxProvider>
 					<ReactQueryProvider>
 						<Panel />
-						<Box className="h-full w-full flex flex-col">
+						<Box className="flex h-full w-full flex-col">
 							<Header />
-							<Box className="flex h-full w-full p-14 overflow-y-auto">{children}</Box>
+							<Box className="flex h-full w-full overflow-y-auto p-5 lg:p-14">
+								{children}
+							</Box>
 						</Box>
 					</ReactQueryProvider>
 				</ReduxProvider>
