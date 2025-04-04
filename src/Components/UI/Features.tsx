@@ -4,7 +4,7 @@ import { CgPerformance } from "react-icons/cg";
 import { MdOutlineSupportAgent } from "react-icons/md";
 import { MdOutlineHealthAndSafety } from "react-icons/md";
 import { AiFillControl } from "react-icons/ai";
-import Title from "./Title";
+// import Title from "./Title";
 
 export default function Features() {
 	return (
@@ -30,7 +30,7 @@ export default function Features() {
 }
 
 interface FeatureCard {
-	Text: String;
+	Text: string;
 	Icon: ReactNode;
 }
 

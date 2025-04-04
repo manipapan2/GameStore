@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 interface CartCardProps {
-	Name: String;
+	Name: string;
 }
 
 export default function CartCard({ Name }: CartCardProps) {

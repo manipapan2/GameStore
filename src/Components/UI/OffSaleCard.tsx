@@ -1,8 +1,7 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Title from "./Title";
 import { IoIosStar } from "react-icons/io";
-import CustomButton from "./CustomButton";
 
 export default function OffSaleCards() {
 	return (

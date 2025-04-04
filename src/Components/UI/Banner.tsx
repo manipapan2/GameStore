@@ -1,5 +1,5 @@
 import ImageSlider from "./ImageSlider";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import CustomButton from "./CustomButton";
 import Link from "next/link";
