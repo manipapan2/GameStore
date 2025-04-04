@@ -16,6 +16,21 @@ const games = {
 		Rate: 4.8,
 		Price: 0,
 	},
+	CallOfDuty2: {
+		Name: "Call Of Duty",
+		Rate: 4.2,
+		Price: 60,
+	},
+	valorant2: {
+		Name: "Valorant",
+		Rate: 4.5,
+		Price: 0,
+	},
+	Overwatch2: {
+		Name: "Overwatch",
+		Rate: 4.8,
+		Price: 0,
+	},
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {

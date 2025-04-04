@@ -10,13 +10,14 @@ import {
 	Snackbar,
 	Alert,
 } from "@mui/material";
-import { IoIosStar } from "react-icons/io";
-import { IoIosAddCircleOutline } from "react-icons/io";
 import CheckIcon from "@mui/icons-material/Check";
 import Image from "next/image";
-import { LoadingButton } from "@mui/lab";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/Components/Hooks/Redux/itemsSlice";
+import Title from "./Title";
+import CustomButton from "./CustomButton";
+import { IoIosStar } from "react-icons/io";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 interface Game {
 	Id: number;
@@ -26,6 +27,7 @@ interface Game {
 }
 
 const fetchGames = async (): Promise<Game[]> => {
+	console.log("fetching!");
 	try {
 		const response = await axios.get("/api/games");
 		if (response.data.success) {
@@ -71,17 +73,18 @@ export default function GameCards() {
 	const games: Game[] = Array.isArray(data) ? data : [];
 
 	return (
-		<Box className="flex h-fit w-full flex-wrap justify-center lg:justify-between">
-			{games.map((game: Game) => (
-				<GameCard
-					key={game.Id}
-					Name={game.Name}
-					Rate={game.Rate}
-					Price={game.Price}
-				/>
-			))}
-			{/* <Typography variant="h1" className="text-red-700">TTTTTTTTTTTT</Typography> */}
-			{/* <h2 className="text-purple-500">ttttttttttttt</h2> */}
+		<Box className="w-full rounded-md border-transparent">
+			<Title Text={"New Games"} />
+			<Box className="flex h-fit w-full flex-wrap justify-center lg:justify-between">
+				{games.map((game: Game) => (
+					<GameCard
+						key={game.Id}
+						Name={game.Name}
+						Rate={game.Rate}
+						Price={game.Price}
+					/>
+				))}
+			</Box>
 		</Box>
 	);
 }
@@ -117,7 +120,7 @@ export function GameCard({ Name, Rate, Price }: GameCardProps) {
 
 	return (
 		<Box
-			className="relative m-10 flex h-[260px] w-[250px] flex-col rounded-lg bg-[#242731] transition-all lg:m-5"
+			className="relative m-10 flex h-[260px] w-[250px] flex-col rounded-lg bg-[var(--CardColor)] transition-all lg:m-5"
 			sx={{
 				outlineOffset: "8px",
 				outline: "3px solid transparent",
@@ -166,38 +169,27 @@ export function GameCard({ Name, Rate, Price }: GameCardProps) {
 				</Box>
 
 				<Box className="flex items-center justify-between">
-					<LoadingButton
+					<CustomButton
 						onClick={() => setAddingToCard(true)}
 						disabled={addingToCard}
 						loading={addingToCard}
-						loadingIndicator={
-							<CircularProgress
-								size={24}
-								className="!text-black"
-							/>
-						}
-						className="cursor-pointer !text-white"
-						sx={{
-							bgcolor: added ? "green" : "var(--Purple)",
-							pointerEvents: added ? "none" : "auto",
-							"& .MuiLoadingButton-loadingIndicator": {
-								display: "flex",
-							},
-							"& .MuiLoadingButton-label": {
-								opacity: addingToCard ? "0" : "1",
-							},
-						}}
+						added={added}
 					>
 						{added ? (
-							<CheckIcon />
+							<>
+								<CheckIcon className="mr-[5px] text-[1.5rem]" />
+								{" Added To Cart"}
+							</>
 						) : (
-							<IoIosAddCircleOutline
-								size={"2rem"}
-								className="mr-[5px]"
-							/>
+							<>
+								<IoIosAddCircleOutline
+									size={"2rem"}
+									className="mr-[5px] text-[1.5rem]"
+								/>
+								{" Add To Cart"}
+							</>
 						)}
-						{added ? "Added To Cart" : "Add To Cart"}
-					</LoadingButton>
+					</CustomButton>
 
 					<Typography color="white">
 						{Price === 0 ? "Free" : `${Price}$`}

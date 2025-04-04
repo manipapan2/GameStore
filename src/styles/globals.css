@@ -31,6 +31,7 @@
 	--BgColor: #1f2029;
 	--Purple: #6c5cd2;
 	--Accent: #7b7a8a;
+	--CardColor: #242731;
 }
 
 html,
@@ -40,7 +41,6 @@ body {
 }
 
 body {
-	color: var(--foreground);
 	background: var(--BgColor);
 	font-family: Arial, Helvetica, sans-serif;
 }

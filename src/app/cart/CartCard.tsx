@@ -1,0 +1,53 @@
+import { LoadingButton } from "@mui/lab";
+import { Box, Typography } from "@mui/material";
+import Image from "next/image";
+
+interface CartCardProps {
+	Name: String;
+}
+
+export default function CartCard({ Name }: CartCardProps) {
+	return (
+		<Box className="flex h-fit w-full bg-[var(--CardColor)]">
+			<Box className="relative aspect-video w-1/3">
+				<Image
+					src={`/Img/${Name.replace(/\s+/g, "")}.png`}
+					alt={`${Name} Image`}
+					layout="fill"
+					objectFit="cover"
+					className="h-full w-full"
+				/>
+			</Box>
+			<Box className="flex-col">
+				<Typography>{Name}</Typography>
+				<LoadingButton
+					// onClick={() => setAddingToCard(true)}
+					// disabled={addingToCard}
+					// loading={addingToCard}
+					// loadingIndicator={
+					// 	<CircularProgress size={24} className="!text-black" />
+					// }
+					className="cursor-pointer !text-white mt-auto"
+					// sx={{
+					// 	bgcolor: added ? "green" : "var(--Purple)",
+					// 	pointerEvents: added ? "none" : "auto",
+					// 	"& .MuiLoadingButton-loadingIndicator": {
+					// 		display: "flex",
+					// 	},
+					// 	"& .MuiLoadingButton-label": {
+					// 		opacity: addingToCard ? "0" : "1",
+					// 	},
+					// }}
+				>
+					{/* {added ? (
+					<CheckIcon />
+				) : (
+					<IoIosAddCircleOutline size={"2rem"} className="mr-[5px]" />
+				)}
+				{added ? "Added To Cart" : "Add To Cart"} */}
+					Remove From Cart
+				</LoadingButton>
+			</Box>
+		</Box>
+	);
+}

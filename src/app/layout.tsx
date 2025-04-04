@@ -8,6 +8,7 @@ import ReactQueryProvider from "@/Components/Hooks/ReactQuery/Providers";
 import { Box } from "@mui/material";
 import "@/styles/globals.css";
 
+
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
 	variable: "--font-geist-sans",
@@ -39,7 +40,7 @@ export default function RootLayout({
 						<Panel />
 						<Box className="flex h-full w-full flex-col">
 							<Header />
-							<Box className="flex h-full w-full overflow-y-auto p-5 lg:p-14">
+							<Box className="flex h-full w-full flex-col overflow-y-auto p-5 lg:p-14">
 								{children}
 							</Box>
 						</Box>

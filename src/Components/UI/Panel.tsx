@@ -91,7 +91,7 @@ export default function Panel() {
 			</Typography>
 			<Box className="w-full border-b-[1px] border-slate-600 pb-10">
 				<NavLink
-					href="#"
+					href="/"
 					icon={
 						<HomeIcon
 							className="min-h-8 min-w-8 transition-[margin] duration-150"
