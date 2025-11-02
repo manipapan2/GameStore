@@ -1,7 +1,5 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
-
-  const games = [
+{
+  "games": [
     {
       "Id": "412354",
       "Name": "Valorant",
@@ -90,103 +88,11 @@ import { NextApiRequest, NextApiResponse } from "next";
       "Category": "First-Person Shooter",
       "Description": "Master Chief begins his fight against the Covenant in this sci-fi FPS classic."
     }
-  ]
-
-  const user: any = {
+  ],
+  "user": {
     "name": "manipapan2",
     "money": 250,
     "ownedGamesIds": ["577753", "73453454"],
     "gamesAddedIds": ["6464542"]
   }
-
-
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-	if (req.method == "GET") {
-		const { name, id, rate, category } = req.query;
-
-		let result: any = [...games];
-
-		if (id) {
-			const idStr = id as string;
-
-			const filteredGames = games.find((game) => game.Id === idStr);
-
-			if (filteredGames) {
-				result = filteredGames;
-			} else {
-				res.status(404).json({
-					data: "Game not found",
-				});
-			}
-		}
-		if (name) {
-			const nameStr = name as string;
-			const nameStrNormalized = nameStr.toLowerCase().replace(/\s+/g, "");
-
-			const foundGame = games.filter((game) =>
-				game.Name.toLowerCase()
-					.replace(/\s+/g, "")
-					.includes(nameStrNormalized),
-			);
-
-			if (foundGame) {
-				res.status(200).json({
-					data: foundGame,
-				});
-			} else {
-				res.status(404).json({
-					data: "Game not found",
-				});
-			}
-		}
-		if (rate) {
-			const rateNum = parseFloat(rate as string);
-
-			if (isNaN(rateNum) || rateNum < 0 || rateNum > 5) {
-				return res.status(400).json({ error: "Wrong Rate" });
-			}
-
-			const filteredGames = result.filter((game) => game.Rate >= rateNum);
-
-			result = filteredGames;
-		}
-		if (category) {
-			console.log("category");
-			const categoryInt = parseInt(category as string);
-			const categories = [
-				"First-Person Shooter",
-				"Hero Shooter",
-				"Action-Adventure",
-				"Sandbox / Survival",
-				"Action / Open World",
-			];
-
-			if (isNaN(categoryInt) || categoryInt >= categories.length) {
-				return res.status(400).json({ error: "Wrong Category" });
-			}
-
-			const filteredGames = result.filter(
-				(game) => game.Category == categories[categoryInt],
-			);
-
-			result = filteredGames;
-		}
-
-		res.status(200).json({
-			data: result,
-		});
-	} else if (req.method == "POST") {
-		const { id } = req.body;
-
-		console.log(id);
-
-		res.status(200).json({
-			data: "Good",
-		});
-	} else {
-		res.status(405).json({
-			data: "Wrong Method",
-		});
-	}
 }

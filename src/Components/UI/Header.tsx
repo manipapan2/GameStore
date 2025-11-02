@@ -8,8 +8,8 @@ import {
 	Typography,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleMenu } from "@/Components/Hooks/Redux/booleanSlice";
-import { RootState, AppDispatch } from "@/Components/Hooks/Redux/store";
+import { toggleMenu } from "@/Hooks/Redux/booleanSlice";
+import { RootState, AppDispatch } from "@/Hooks/Redux/store";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
@@ -18,7 +18,7 @@ import Link from "next/link";
 
 export default function Header() {
 	const dispatch = useDispatch<AppDispatch>();
-	const items = useSelector((state: RootState) => state.items.items);
+	const items = useSelector((state: RootState) => state.games.items);
 	const isMenuOpen = useSelector(
 		(state: RootState) => state.booleanState.value,
 	);
@@ -26,7 +26,7 @@ export default function Header() {
 	return (
 		<AppBar
 			position="relative"
-			className="flex h-[100px] w-full flex-row items-center justify-between border-b-[1px] border-[var(--Accent)] bg-transparent p-8 shadow-none lg:h-auto lg:justify-end lg:pl-14 lg:pr-14"
+			className="flex h-[100px] w-full flex-row items-center justify-between border-[1px] border-l-0 border-r-0 border-t-0 border-solid border-[var(--Accent)] bg-transparent p-8 shadow-none lg:h-auto lg:justify-end pl-5 pr-5"
 		>
 			<IconButton
 				onClick={() => dispatch(toggleMenu())}

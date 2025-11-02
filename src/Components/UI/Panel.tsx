@@ -1,9 +1,7 @@
-"use client";
+'use client'
+
 import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/Components/Hooks/Redux/store";
-import { toggleMenu } from "@/Components/Hooks/Redux/booleanSlice";
 import HomeIcon from "@mui/icons-material/Home";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import { BiLibrary } from "react-icons/bi";
@@ -11,6 +9,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { IoCloseSharp } from "react-icons/io5";
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 
 interface NavProps {
 	isMenuOpen: boolean;
@@ -42,10 +41,12 @@ const Nav = styled.nav<NavProps>`
 `;
 
 export default function Panel() {
-	const dispatch = useDispatch<AppDispatch>();
-	const isMenuOpen = useSelector(
-		(state: RootState) => state.booleanState.value,
-	);
+	const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+	useEffect(() => {
+	  console.log('menu is', isMenuOpen)
+	}, [isMenuOpen])
+	
 
 	return (
 		<Nav isMenuOpen={isMenuOpen}>
@@ -76,7 +77,7 @@ export default function Panel() {
 					</Typography>
 				</Box>
 				<IconButton
-					onClick={() => dispatch(toggleMenu())}
+					onClick={() => setIsMenuOpen(prev => !prev)}
 					className="hidden items-center justify-center p-3 lg:flex"
 				>
 					{isMenuOpen ? (
@@ -104,7 +105,7 @@ export default function Panel() {
 					isMenuOpen={isMenuOpen}
 				/>
 				<NavLink
-					href="#"
+					href="/games"
 					icon={
 						<VideogameAssetIcon
 							className="ml-auto min-h-8 min-w-8 transition-[margin] duration-150"
@@ -117,7 +118,7 @@ export default function Panel() {
 					isMenuOpen={isMenuOpen}
 				/>
 				<NavLink
-					href="#"
+					href="/library"
 					icon={
 						<BiLibrary
 							className="min-h-8 min-w-8 transition-[margin] duration-150"
@@ -133,7 +134,7 @@ export default function Panel() {
 					Other
 				</Typography>
 				<NavLink
-					href="#"
+					href="/setting"
 					icon={
 						<SettingsIcon
 							className={`${isMenuOpen ? "mr-4" : "mr-0"} min-h-8 min-w-8 transition-[margin]`}

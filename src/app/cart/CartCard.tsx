@@ -3,20 +3,20 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 interface CartCardProps {
-	Name: string;
+	Name: string | number;
 }
 
 export default function CartCard({ Name }: CartCardProps) {
 	return (
 		<Box className="flex h-fit w-full bg-[var(--CardColor)]">
 			<Box className="relative aspect-video w-1/3">
-				<Image
+				{/* <Image
 					src={`/Img/${Name.replace(/\s+/g, "")}.png`}
 					alt={`${Name} Image`}
 					layout="fill"
 					objectFit="cover"
 					className="h-full w-full"
-				/>
+				/> */}
 			</Box>
 			<Box className="flex-col">
 				<Typography>{Name}</Typography>

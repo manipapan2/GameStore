@@ -1,7 +1,7 @@
 import ImageSlider from "./ImageSlider";
 import { Box, Typography } from "@mui/material";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
-import CustomButton from "./CustomButton";
+import CustomButton from "./Button";
 import Link from "next/link";
 
 export default function Banner() {

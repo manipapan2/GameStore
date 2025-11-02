@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+
 interface ItemState {
   items: string[];
 }
@@ -8,8 +9,8 @@ const initialState: ItemState = {
   items: [],
 };
 
-const itemsSlice = createSlice({
-  name: 'items',
+const gamesSlice = createSlice({
+  name: 'games',
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<string>) => {
@@ -18,5 +19,5 @@ const itemsSlice = createSlice({
   },
 });
 
-export const { addItem } = itemsSlice.actions;
-export default itemsSlice.reducer;
+export const { addItem } = gamesSlice.actions;
+export default gamesSlice.reducer;
