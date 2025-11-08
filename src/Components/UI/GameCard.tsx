@@ -78,7 +78,7 @@ export default function GameCard({
 				<Box className="mb-1 flex justify-between">
 					<Typography
 						color="white"
-						className="flex truncate text-lg"
+						className="truncate text-lg"
 					>
 						{Name}
 					</Typography>

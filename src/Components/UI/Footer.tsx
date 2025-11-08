@@ -13,8 +13,8 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
 	return (
-		// <footer className="mt-auto rounded-lg bg-[var(--color-accent)] p-4" style={{
-		<footer className="mt-4 rounded-lg bg-[var(--color-accent)] p-4">
+		// <footer className="mt-4 rounded-lg bg-[var(--color-accent)] p-4">
+		<footer className="mt-4 rounded-lg p-4">
 			<Box className="flex justify-between flex-wrap md:flex-row md:items-start md:justify-between">
 				<div className="mt-4 md:mt-0 w-fit">
 					<Typography
@@ -26,25 +26,25 @@ export default function Footer() {
 					<div className="flex">
 						<Tooltip
 							title={"Github"}
-							className="mr-2 transition-all hover:cursor-pointer hover:text-[var(--color-primary)]"
+							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
 							<SiGithub size={30} />
 						</Tooltip>
 						<Tooltip
 							title={"Instagram"}
-							className="mr-2 transition-all hover:cursor-pointer hover:text-[var(--color-primary)]"
+							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
 							<AiFillInstagram size={30} />
 						</Tooltip>
 						<Tooltip
 							title={"LinkedIn"}
-							className="mr-2 transition-all hover:cursor-pointer hover:text-[var(--color-primary)]"
+							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
 							<FaLinkedin size={30} />
 						</Tooltip>
 						<Tooltip
 							title={"X"}
-							className="mr-2 transition-all hover:cursor-pointer hover:text-[var(--color-primary)]"
+							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
 							<FaSquareXTwitter size={30} />
 						</Tooltip>

@@ -35,7 +35,7 @@ export default function Button({
 			loadingIndicator={
 				<CircularProgress size={24} className="!text-black" />
 			}
-			className={`cursor-pointer !text-black w-full min-h-12 ${className}`}
+			className={`cursor-pointer !text-black min-w-fit w-full min-h-12 p-2 box-border ${className}`}
 			sx={{
 				bgcolor: added ? "green" : "var(--Purple)",
 				pointerEvents: added ? "none" : "auto",

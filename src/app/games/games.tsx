@@ -24,19 +24,19 @@ export default function Games({ games }: GamesProps) {
 
 	return (
 		<>
-			<div className="relative z-50 flex w-full items-center justify-between p-1">
-				<div className="relative m-2 h-10 max-w-72 flex-1">
-					<i className="absolute left-2 top-[50%] translate-y-[-50%] text-[var(--color-primary)]">
+			<div className="relative z-50 flex flex-col md:flex-row w-full items-center justify-between p-1">
+				<div className="relative m-2 h-10 md:max-w-80 w-full flex-1">
+					<i className="absolute left-3 top-[50%] translate-y-[-50%] text-[var(--color-primary)]">
 						<FaSearch size={15} />
 					</i>
 					<input
 						type="text"
-						className="h-full w-full rounded-full bg-[var(--color-card)] p-2 pl-8 text-white outline-none  focus:outline-[var(--color-primary)] transition-all"
+						className="h-full w-full rounded-md bg-[var(--color-card)] p-3 pl-9 text-white outline-none  focus:outline-[var(--color-primary)] transition-all"
 						placeholder="Search..."
 					/>
 				</div>
-				<div className="flex">
-					<div className="mr-4 w-32">
+				<div className="flex w-full md:w-fit justify-between md:mt-0 mt-2">
+					<div className="mr-4 w-full md:w-32">
 						<SelectComp
 							value={category}
 							label="Category"
@@ -50,7 +50,7 @@ export default function Games({ games }: GamesProps) {
 						/>
 					</div>
 
-					<div className="w-32">
+					<div className="w-full md:w-32">
 						<SelectComp
 							value={rate}
 							label="Rate"

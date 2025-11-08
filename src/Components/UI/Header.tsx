@@ -67,7 +67,7 @@ export default function Header() {
 						manipapan2
 					</Typography>
 					<Avatar
-						src="/Img/Avatar.png"
+						src="/assets/Avatar.png"
 						alt="Avatar Image"
 						className="ml-2 bg-[var(--Purple)]"
 					/>

@@ -36,12 +36,14 @@ export default function RootLayout({
 			>
 				<ReduxProvider>
 					<ReactQueryProvider>
-						<Panel />
-						<Box className="flex h-full w-full flex-col">
-							<Header />
-							<Box className="flex h-full w-full flex-col overflow-y-auto p-3">
-								{children}
-								<Footer />
+						<Box className="flex w-full">
+							<Panel />
+							<Box className="flex h-full w-full max-w-full flex-col overflow-x-hidden">
+								<Header />
+								<Box className="flex h-full w-full max-w-full flex-col overflow-x-hidden p-3">
+									{children}
+									<Footer />
+								</Box>
 							</Box>
 						</Box>
 					</ReactQueryProvider>
