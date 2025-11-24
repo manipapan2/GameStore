@@ -17,7 +17,7 @@ const CarouselSlide = ({ imageName, name, rate }: CarouselSlideProps) => {
 				className="h-full w-full select-none rounded-md object-cover hover:cursor-pointer"
 			/>
 
-			<div className="absolute bottom-0 left-0 z-10 flex w-full justify-between p-4 text-xl text-white">
+			<div className="absolute bottom-0 left-0 z-10 flex w-full justify-between p-4 text-xl text-white select-none">
 				<span className="mr-2 translate-y-[12px] truncate opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
 					{name}
 				</span>

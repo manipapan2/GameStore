@@ -7,9 +7,9 @@ interface SelectProps {
 	onChange?: (e: any) => any;
 }
 
-interface OptionsProps {
-	value: any;
+export interface OptionsProps {
 	text: string;
+	value: any;
 }
 
 export default function SelectComp({
@@ -18,6 +18,7 @@ export default function SelectComp({
 	Options,
 	onChange,
 }: SelectProps) {
+
 	return (
 		<div className="h-full w-full">
 			<h2 className="mb-3 text-[var(--color-primary)]">{label}</h2>
@@ -52,10 +53,10 @@ export default function SelectComp({
 					}}
 				>
 					<MenuItem value="">
-						<em>None</em>
+						<em>All</em>
 					</MenuItem>
 					{Options.map((option: OptionsProps, index: number) => (
-						<MenuItem value={option.value}>{option.text}</MenuItem>
+						<MenuItem key={option.value} value={option.value}>{option.text}</MenuItem>
 					))}
 				</Select>
 			</FormControl>

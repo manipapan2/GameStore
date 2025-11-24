@@ -51,7 +51,7 @@ export function ImageComp({ ImgSrc, Index, ActiveIndex }: ImageProps) {
 		>
 			<Box className="h-[70%] w-[70%]">
 				<Image
-					src={`/Img/${ImgSrc}`}
+					src={`/assets/${ImgSrc}`}
 					alt={`Slider Image ${Index + 1}`}
 					fill
 					className="relative object-contain"

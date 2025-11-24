@@ -36,7 +36,7 @@ interface FeatureCard {
 
 export function FeatureCard({ Text, Icon }: FeatureCard) {
 	return (
-		<Box className="group mb-5 mt-5 h-20 w-full cursor-pointer lg:w-1/5">
+		<Box className="group mb-5 mt-5 h-20 w-full cursor-pointer lg:mr-4 lg:ml-4 first:ml-0 last:mr-0">
 			<Box className="flex h-full w-full items-center rounded-sm bg-[var(--CardColor)] p-5 transition-all duration-300 group-hover:-translate-y-3 md:p-10 lg:p-5 xl:p-10">
 				<Typography className="bold text-white">{Text}</Typography>
 				<Box className="ml-auto min-h-8 min-w-8 text-[var(--Purple)]">

@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import itemsReducer from "./gamesSlice";
-import booleanReducer from "./booleanSlice";
+import panelReducer from "./panelSlice"
 
 const store = configureStore({
 	reducer: {
 		games: itemsReducer,
-		booleanState: booleanReducer,
+		panelState: panelReducer,
 	},
 });
 

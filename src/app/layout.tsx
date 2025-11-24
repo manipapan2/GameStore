@@ -1,12 +1,12 @@
 import ReduxProvider from "@/Hooks/Redux/Provider";
 import localFont from "next/font/local";
 import Header from "@/Components/UI/Header";
-//test
 import Panel from "@/Components/UI/Panel";
 import ReactQueryProvider from "@/Hooks/ReactQuery/Providers";
-import { Box } from "@mui/material";
+// import { Box } from "@mui/material";
 import "@/styles/globals.css";
-import Head from "next/head";
+// import Head from "next/head";
+import type { Metadata, Viewport } from "next";
 import Footer from "@/Components/UI/Footer";
 
 // const geistSans = localFont({
@@ -20,32 +20,40 @@ import Footer from "@/Components/UI/Footer";
 // 	weight: "100 900",
 // });
 
+export const viewport: Viewport = {
+	themeColor: "#FFFFFF",
+};
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Find Whatever suits you best and Play",
+};
+
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+
+
 	return (
 		<html lang="en">
-			<head>
-				<title>Game Store</title>
-			</head>
 			<body
 				// className={`${geistSans.variable} ${geistMono.variable} flex antialiased`}
 				className={`flex antialiased`}
 			>
 				<ReduxProvider>
 					<ReactQueryProvider>
-						<Box className="flex w-full">
+						<div className="flex w-full">
 							<Panel />
-							<Box className="flex h-full w-full max-w-full flex-col overflow-x-hidden">
+							<div className="flex h-full w-full max-w-full flex-col overflow-x-hidden">
 								<Header />
-								<Box className="flex h-full w-full max-w-full flex-col overflow-x-hidden p-3">
+								<div className="flex h-full w-full max-w-full flex-col overflow-x-hidden p-3">
 									{children}
 									<Footer />
-								</Box>
-							</Box>
-						</Box>
+								</div>
+							</div>
+						</div>
 					</ReactQueryProvider>
 				</ReduxProvider>
 			</body>

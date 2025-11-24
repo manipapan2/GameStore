@@ -1,14 +1,12 @@
 "use client";
 import {
-	Box,
-	AppBar,
 	IconButton,
 	Badge,
 	Avatar,
 	Typography,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleMenu } from "@/Hooks/Redux/booleanSlice";
+import { togglePanel } from "@/Hooks/Redux/panelSlice";
 import { RootState, AppDispatch } from "@/Hooks/Redux/store";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
@@ -19,32 +17,34 @@ import Link from "next/link";
 export default function Header() {
 	const dispatch = useDispatch<AppDispatch>();
 	const items = useSelector((state: RootState) => state.games.items);
-	const isMenuOpen = useSelector(
-		(state: RootState) => state.booleanState.value,
+	const isPanelOpen = useSelector(
+		(state: RootState) => state.panelState.isPanelOpen
 	);
 
 	return (
-		<AppBar
-			position="relative"
+		<header
 			className="flex h-[100px] w-full flex-row items-center justify-between border-[1px] border-l-0 border-r-0 border-t-0 border-solid border-[var(--Accent)] bg-transparent p-8 shadow-none lg:h-auto lg:justify-end pl-5 pr-5"
 		>
 			<IconButton
-				onClick={() => dispatch(toggleMenu())}
+				onClick={() => dispatch(togglePanel())}
 				className="flex items-center justify-center p-3 lg:hidden"
+				sx={{
+					display: {lg: "hidden"}
+				}}
 			>
-				{isMenuOpen ? (
+				{isPanelOpen ? (
 					<IoCloseSharp className="text-3xl text-white" />
 				) : (
 					<HiOutlineMenuAlt4 className="text-3xl text-white" />
 				)}
 			</IconButton>
-			<Box className="flex items-center justify-between lg:w-full">
-				<Box>
+			<div className="flex items-center justify-between lg:w-full">
+				<div>
 					<IconButton>
 						<Badge badgeContent={0} color="secondary">
 							<IoMdNotificationsOutline
-								className="text-2xl"
 								color="white"
+								size={25}
 							/>
 						</Badge>
 					</IconButton>
@@ -55,24 +55,29 @@ export default function Header() {
 								color="secondary"
 							>
 								<IoCartOutline
-									className="text-2xl"
+									// className="text-2xl"
 									color="white"
+									size={25}
 								/>
 							</Badge>
 						</IconButton>
 					</Link>
-				</Box>
-				<Box className="ml-3 flex items-center">
-					<Typography className="hidden lg:flex">
+				</div>
+				<div className="ml-3 flex items-center">
+					<Typography overflow={'hidden'} color="white" display={'flex'}
+					>
 						manipapan2
 					</Typography>
 					<Avatar
 						src="/assets/Avatar.png"
 						alt="Avatar Image"
-						className="ml-2 bg-[var(--Purple)]"
+						sx={{
+							marginLeft: "0.5rem",
+							background: "var(--color-primary)"
+						}}
 					/>
-				</Box>
-			</Box>
-		</AppBar>
+				</div>
+			</div>
+		</header>
 	);
 }

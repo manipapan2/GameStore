@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
@@ -8,79 +8,59 @@ import { BiLibrary } from "react-icons/bi";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { IoCloseSharp } from "react-icons/io5";
-import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/Hooks/Redux/store";
+import { togglePanel } from "@/Hooks/Redux/panelSlice";
+import { FaDownload } from "react-icons/fa6";
 
-interface NavProps {
-	isMenuOpen: boolean;
-}
-
-const Nav = styled.nav<NavProps>`
-	height: calc(100% - 100px);
-	position: fixed;
-	top: 100px;
-	z-index: 10;
-	display: flex;
-	flex-direction: column;
-	background-color: var(--BgColor);
-	padding: 1.25rem;
-	padding-top: 2rem;
-	width: 100%;
-	height: 100%;
-	transition: left 0.3s ease;
-
-	left: ${({ isMenuOpen }) => (isMenuOpen ? "0" : "-100%")};
-
-	@media (min-width: 1024px) {
-		position: relative;
-		top: auto;
-		width: auto;
-		border-right: 1px solid var(--Accent);
-		left: 0; /* Override for large screens */
-	}
-`;
 
 export default function Panel() {
-	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const isPanelOpen = useSelector((state: RootState) => state.panelState.isPanelOpen)
+	const dispatch = useDispatch()
 
-	useEffect(() => {
-	  console.log('menu is', isMenuOpen)
-	}, [isMenuOpen])
 	
 
 	return (
-		<Nav isMenuOpen={isMenuOpen}>
+		<nav
+			className="fixed left-0 lg:!left-0 top-[100px] z-50 flex h-[calc(100%-100px)] w-full flex-col border-b-0 border-l-0 border-r-[2px] border-t-0 border-solid border-[var(--color-accent)] bg-[var(--color-background)] p-5 pt-8 transition-all md:w-1/3 lg:relative lg:top-auto lg:h-full lg:w-auto"
+			style={
+				{
+					left: isPanelOpen ? '0px' : '-100%'
+				}
+			}
+		>
 			<Box
 				className="flex items-center pb-4 transition-all"
 				sx={{
-					paddingRight: isMenuOpen ? "12px" : "0",
-					paddingLeft: isMenuOpen ? "12px" : "0",
+					paddingRight: isPanelOpen ? "12px" : "0",
+					paddingLeft: isPanelOpen ? "12px" : "0",
 				}}
 			>
 				<Box className="hidden h-[50px] lg:flex">
 					<VideogameAssetIcon
 						className="bg-gradient-to-r text-[var(--Purple)]"
 						sx={{
-							marginRight: isMenuOpen ? "16px" : "0",
-							fontSize: isMenuOpen ? "3rem" : "0",
+							marginRight: isPanelOpen ? "16px" : "0",
+							fontSize: isPanelOpen ? "3rem" : "0",
 						}}
 					/>
 					<Typography
 						variant="h3"
 						className="flex items-center text-white transition-[font-size] duration-150"
 						sx={{
-							marginRight: isMenuOpen ? "16px" : "0",
-							fontSize: isMenuOpen ? "2rem" : "0",
+							marginRight: isPanelOpen ? "16px" : "0",
+							fontSize: isPanelOpen ? "2rem" : "0",
 						}}
 					>
 						Unity
 					</Typography>
 				</Box>
 				<IconButton
-					onClick={() => setIsMenuOpen(prev => !prev)}
+					onClick={() => dispatch(togglePanel())}
 					className="hidden items-center justify-center p-3 lg:flex"
 				>
-					{isMenuOpen ? (
+					{isPanelOpen ? (
 						<IoCloseSharp className="text-3xl text-white" />
 					) : (
 						<HiOutlineMenuAlt4 className="text-3xl text-white" />
@@ -97,12 +77,12 @@ export default function Panel() {
 						<HomeIcon
 							className="min-h-8 min-w-8 transition-[margin] duration-150"
 							sx={{
-								marginRight: isMenuOpen ? "16px" : "0",
+								marginRight: isPanelOpen ? "16px" : "0",
 							}}
 						/>
 					}
 					label="Home"
-					isMenuOpen={isMenuOpen}
+					isPanelOpen={isPanelOpen}
 				/>
 				<NavLink
 					href="/games"
@@ -110,23 +90,23 @@ export default function Panel() {
 						<VideogameAssetIcon
 							className="ml-auto min-h-8 min-w-8 transition-[margin] duration-150"
 							sx={{
-								marginRight: isMenuOpen ? "16px" : "0",
+								marginRight: isPanelOpen ? "16px" : "0",
 							}}
 						/>
 					}
 					label="Games"
-					isMenuOpen={isMenuOpen}
+					isPanelOpen={isPanelOpen}
 				/>
 				<NavLink
-					href="/library"
+					href="/download"
 					icon={
-						<BiLibrary
+						<FaDownload
 							className="min-h-8 min-w-8 transition-[margin] duration-150"
-							style={{ marginRight: isMenuOpen ? "16px" : "0" }}
+							style={{ marginRight: isPanelOpen ? "16px" : "0" }}
 						/>
 					}
-					label="Library"
-					isMenuOpen={isMenuOpen}
+					label="Download"
+					isPanelOpen={isPanelOpen}
 				/>
 			</Box>
 			<Box className="pb-10 pt-10">
@@ -137,14 +117,14 @@ export default function Panel() {
 					href="/setting"
 					icon={
 						<SettingsIcon
-							className={`${isMenuOpen ? "mr-4" : "mr-0"} min-h-8 min-w-8 transition-[margin]`}
+							className={`${isPanelOpen ? "mr-4" : "mr-0"} min-h-8 min-w-8 transition-[margin]`}
 						/>
 					}
 					label="Setting"
-					isMenuOpen={isMenuOpen}
+					isPanelOpen={isPanelOpen}
 				/>
 			</Box>
-		</Nav>
+		</nav>
 	);
 }
 
@@ -152,10 +132,10 @@ interface NavLinkProps {
 	href: string;
 	icon: JSX.Element;
 	label: string;
-	isMenuOpen: boolean;
+	isPanelOpen: boolean;
 }
 
-function NavLink({ href, icon, label, isMenuOpen }: NavLinkProps) {
+function NavLink({ href, icon, label, isPanelOpen }: NavLinkProps) {
 	return (
 		<Link
 			href={href}
@@ -164,7 +144,7 @@ function NavLink({ href, icon, label, isMenuOpen }: NavLinkProps) {
 			{icon}
 			<Typography
 				className="w-full overflow-hidden font-bold transition-[font-size] duration-150"
-				sx={{ fontSize: isMenuOpen ? "1rem" : "0" }}
+				sx={{ fontSize: isPanelOpen ? "1rem" : "0" }}
 			>
 				{label}
 			</Typography>

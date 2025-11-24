@@ -49,7 +49,7 @@ export function OffSaleCard({
 			<Box className="flex h-full w-full">
 				<Box className="relative aspect-video w-full">
 					<Image
-						src={`/Img/${Text.replace(/\s+/g, "")}.png`}
+						src={`/assets/${Text.replace(/\s+/g, "")}.png`}
 						alt={`${Text} Image`}
 						fill
 						className="rounded-[14px] object-cover"

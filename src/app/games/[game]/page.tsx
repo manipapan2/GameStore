@@ -1,92 +1,41 @@
-"use client";
+// import GameCard from "@/Components/UI/GameCard/GameCard";
+import Head from "next/head";
+import Game from "./game";
+import { GameType } from "@/Types/games";
+// import InputLabel from "@mui/material/InputLabel";
+// import MenuItem from "@mui/material/MenuItem";
+// import FormControl from "@mui/material/FormControl";
+// import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-import Button from "@/Components/UI/Button";
-import { useEffect, useState } from "react";
+async function getGame(params: any) {
+	const backend_url = process.env.BACK_END_URL;
+	let requestURL: string = `${backend_url}/api/games`
 
-const Game = () => {
-	const [scrollPercentage, setScrollPercentage] = useState<number>(0);
-	const [imageScale, setImageScale] = useState<number>(1);
+	const gameName: string = params.params?.game
 
-	useEffect(() => {
-		const pageContainer = document.getElementById("single-game-page");
-		const parentPageContainer = pageContainer?.parentNode as HTMLElement;
+	
+	if(gameName) {
+		requestURL += `?name=${gameName}`
+	}
 
-		if (pageContainer && parentPageContainer) {
-			parentPageContainer.addEventListener("scroll", (e: Event) =>
-				setImageScale(() => {
-					const scrollValue: number = (e.target as HTMLElement)
-						.scrollTop;
-					const scrollPercentageValue: number =
-						(scrollValue * 100) /
-						(parentPageContainer.scrollHeight -
-							parentPageContainer.clientHeight);
-					const maximumScale: number = 1.4;
-					const scaleDifferece: number =
-						(scrollPercentageValue * maximumScale) / 100;
+	
 
-					setScrollPercentage(scrollPercentageValue);
+	const res = await fetch(requestURL, {
+		cache: "no-store",
+	});
+	const data = await res.json();
+	return data;
+}
 
-					// console.log(scaleDifferece)
-
-					return 1 + scaleDifferece;
-				}),
-			);
-		}
-	}, []);
+export default async function GamesPage(params: any) {
+	const game: GameType = await getGame(params);
 
 	return (
-		<div
-			id="single-game-page"
-			className="rounded-md bg-[var(--color-accent)]"
-		>
-			<div className="relative aspect-[16/8] w-full overflow-hidden rounded-t-md md:aspect-[16/4]">
-				{/* For optimization change scale to background size */}
-				<img
-					src="/assets/2841233.png"
-					className="max-h-full w-full rounded-t-md object-cover"
-					alt="test"
-					style={{
-						transform: `scale(${imageScale})`,
-					}}
-				/>
-				<div
-					className="absolute left-0 top-0 z-10 flex h-full w-full flex-col justify-end rounded-t-md bg-black"
-					style={{
-						background: `rgb(0 0 0 / ${scrollPercentage / 40})`,
-					}}
-				>
-					<div className="h-fit w-full p-2 text-white backdrop-blur-[3px] md:flex-row flex-col flex justify-between items-center" style={{
-                        
-                    }}>
-						<div>
-                            <h1 className="text-3xl md:text-4xl">Overwatch</h1>
-						<h2 className="mt-2">
-							ssssssssss dsds ds dsssssssssssssss
-						</h2>
-                        </div>
-                        <div className="w-full md:w-fit md:min-w-80  mt-2 md:mt-0">
-                            <Button Icon={'X'}>Add to cart</Button>
-                        </div>
-					</div>
-				</div>
-			</div>
-			<div className="min-h-[1000px] w-full p-2">
-				<h2 className="mb-2 text-2xl text-[var(--color-primary)]">
-					Description
-				</h2>
-				<p className="text-white">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-					vel id pariatur dolore veritatis natus, quidem sunt adipisci
-					autem beatae cum ea, earum veniam, quasi distinctio
-					perferendis quia quas illum?
-				</p>
-
-				<h2 className="mb-2 mt-2 text-2xl text-[var(--color-primary)]">
-					Images
-				</h2>
-			</div>
-		</div>
+		<>
+			<Head>
+				<title>test</title>
+			</Head>
+			<Game game={game} />
+		</>
 	);
-};
-
-export default Game;
+}

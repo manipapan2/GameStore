@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 interface ButtonProps {
 	children: ReactNode;
-  disabled?: boolean;
+  	disabled?: boolean;
 	isLoading?: boolean;
 	added?: boolean;
 	className?: string;
@@ -16,7 +16,7 @@ interface ButtonProps {
 
 export default function Button({
 	children,
-  disabled,
+  	disabled,
 	isLoading,
 	added,
 	className,

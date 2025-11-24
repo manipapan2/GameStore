@@ -1,5 +1,5 @@
 import { Box, Tooltip, Typography } from "@mui/material";
-import React, { FC, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { FaRegCopyright } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -14,12 +14,12 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 export default function Footer() {
 	return (
 		// <footer className="mt-4 rounded-lg bg-[var(--color-accent)] p-4">
-		<footer className="mt-4 rounded-lg p-4">
+		<footer className="mt-4 rounded-lg p-4 z-0 relative">
 			<Box className="flex justify-between flex-wrap md:flex-row md:items-start md:justify-between">
 				<div className="mt-4 md:mt-0 w-fit">
 					<Typography
 						variant="h4"
-						className="mb-4 text-[var(--color-primary)]"
+						className="text-3xl mb-4 text-[var(--color-primary)]"
 					>
 						Social
 					</Typography>
@@ -54,7 +54,7 @@ export default function Footer() {
 				<div className="mt-4 md:mt-0">
 					<Typography
 						variant="h4"
-						className="mb-4 text-[var(--color-primary)]"
+						className="text-3xl mb-4 text-[var(--color-primary)]"
 					>
 						Support
 					</Typography>
@@ -67,7 +67,7 @@ export default function Footer() {
 				<div className="mt-4 md:mt-0">
 					<Typography
 						variant="h4"
-						className="mb-4 text-[var(--color-primary)]"
+						className="text-3xl mb-4 text-[var(--color-primary)]"
 					>
 						Contact US
 					</Typography>

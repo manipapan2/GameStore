@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 
 export default function Title({ Text }: {Text: string}) {
     return(
-        <Typography variant="h5" className="mt-5 mb-5 text-white">
+        <Typography variant="h4" className="mt-5 text-3xl mb-6 text-[var(--color-primary)]">
             {Text}
         </Typography>
     )

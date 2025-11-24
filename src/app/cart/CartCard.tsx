@@ -1,6 +1,5 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
 
 interface CartCardProps {
 	Name: string | number;
@@ -11,7 +10,7 @@ export default function CartCard({ Name }: CartCardProps) {
 		<Box className="flex h-fit w-full bg-[var(--CardColor)]">
 			<Box className="relative aspect-video w-1/3">
 				{/* <Image
-					src={`/Img/${Name.replace(/\s+/g, "")}.png`}
+					src={`/assets/${Name.replace(/\s+/g, "")}.png`}
 					alt={`${Name} Image`}
 					layout="fill"
 					objectFit="cover"

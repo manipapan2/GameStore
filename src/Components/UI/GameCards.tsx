@@ -1,16 +1,12 @@
 "use client";
 import "@/styles/globals.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import {
-	Box,
-	Snackbar,
-	Alert,
-} from "@mui/material";
+import { Box, Snackbar, Alert } from "@mui/material";
 import Title from "./Title";
 import Skeleton from "./Skeleton";
-import GameCard from "@/Components/UI/GameCard";
+import GameCard from "@/Components/UI/GameCard/GameCard";
 
 interface Game {
 	Id: number;
@@ -21,14 +17,14 @@ interface Game {
 }
 
 export default function GameCards() {
-	const { data, error, isLoading } = useQuery({
+	const { data, error } = useQuery({
 		queryKey: ["games"],
 		queryFn: async (): Promise<Game[]> => {
 			console.log("fetching!");
 			try {
 				const response = await axios.get("/api/games");
 				if (response?.data?.data) {
-					return response.data.data
+					return response.data.data;
 				} else {
 					throw new Error("Failed to fetch game data");
 				}
@@ -75,7 +71,6 @@ export default function GameCards() {
 							Rate={game.Rate}
 							Price={game.Price}
 							Category={game.Category}
-							
 						/>
 					))}
 				</Box>
@@ -89,4 +84,3 @@ export default function GameCards() {
 		</Box>
 	);
 }
-

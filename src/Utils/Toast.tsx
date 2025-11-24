@@ -10,6 +10,8 @@ const ToastContainer = ({Text, Mode,}: ToastProps) => {
     // testTag.innerText='aaaaaaaaaaaaaaaaa'
 
     // bodyTag?.appendChild(testTag)
+    console.log(Text)
+    console.log(Mode)
     return(
         <div>test</div>
     )
