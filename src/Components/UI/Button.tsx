@@ -2,6 +2,7 @@ import { LoadingButton } from "@mui/lab";
 import { CircularProgress } from "@mui/material";
 import { ReactNode } from "react";
 
+
 interface ButtonProps {
 	children: ReactNode;
   	disabled?: boolean;
@@ -25,30 +26,51 @@ export default function Button({
 	onClick,
 	onChange,
 }: ButtonProps) {
+	// return (
+	// 	<LoadingButton
+	// 		onClick={onClick}
+	// 		onChange={onChange ? (e) => onChange(e) : null}
+	// 		disabled={disabled}
+	// 		loading={isLoading}
+	// 		startIcon={Icon || ""}
+	// 		loadingIndicator={
+	// 			<CircularProgress size={24} className="!text-black" />
+	// 		}
+	// 		className={`cursor-pointer !text-black min-w-fit w-full min-h-12 p-2 box-border ${className}`}
+	// 		sx={{
+	// 			bgcolor: added ? "green" : "var(--Purple)",
+	// 			pointerEvents: added ? "none" : "auto",
+	// 			"& .MuiLoadingButton-loadingIndicator": {
+	// 				display: "flex",
+	// 			},
+	// 			"& .MuiLoadingButton-label": {
+	// 				opacity: isLoading ? "0" : "1",
+	// 			},
+	// 			...sx,
+	// 		}}
+	// 	>
+	// 		{children}
+	// 	</LoadingButton>
+	// );
+
+
 	return (
-		<LoadingButton
+		<button
 			onClick={onClick}
 			onChange={onChange ? (e) => onChange(e) : null}
 			disabled={disabled}
-			loading={isLoading}
-			startIcon={Icon || ""}
-			loadingIndicator={
-				<CircularProgress size={24} className="!text-black" />
-			}
-			className={`cursor-pointer !text-black min-w-fit w-full min-h-12 p-2 box-border ${className}`}
-			sx={{
-				bgcolor: added ? "green" : "var(--Purple)",
-				pointerEvents: added ? "none" : "auto",
-				"& .MuiLoadingButton-loadingIndicator": {
-					display: "flex",
-				},
-				"& .MuiLoadingButton-label": {
-					opacity: isLoading ? "0" : "1",
-				},
-				...sx,
+			className={`cursor-pointer text-black bg-[var(--color-primary)] flex justify-center items-center rounded-sm min-w-fit w-full min-h-12 p-2 box-border ${className}`}
+			style={{
+				opacity: isLoading ? "0" : "1",
 			}}
 		>
-			{children}
-		</LoadingButton>
+			<span className="mr-2 !text-2xl">
+				{Icon}
+			</span>
+			<span>
+				
+				{children}
+			</span>
+		</button>
 	);
 }

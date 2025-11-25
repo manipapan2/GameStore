@@ -3,7 +3,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
+import { MdVideogameAsset } from "react-icons/md";
 import { BiLibrary } from "react-icons/bi";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
@@ -38,9 +38,9 @@ export default function Panel() {
 				}}
 			>
 				<Box className="hidden h-[50px] lg:flex">
-					<VideogameAssetIcon
+					<MdVideogameAsset
 						className="bg-gradient-to-r text-[var(--Purple)]"
-						sx={{
+						style={{
 							marginRight: isPanelOpen ? "16px" : "0",
 							fontSize: isPanelOpen ? "3rem" : "0",
 						}}
@@ -87,9 +87,9 @@ export default function Panel() {
 				<NavLink
 					href="/games"
 					icon={
-						<VideogameAssetIcon
+						<MdVideogameAsset
 							className="ml-auto min-h-8 min-w-8 transition-[margin] duration-150"
-							sx={{
+							style={{
 								marginRight: isPanelOpen ? "16px" : "0",
 							}}
 						/>
