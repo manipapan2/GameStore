@@ -12,7 +12,7 @@ interface ButtonProps {
 	sx?: object;
 	Icon?: ReactNode;
 	onClick?: () => void;
-	onChange?: (e: any) => void;
+	onChange?: (e: any) => any | null;
 }
 
 export default function Button({

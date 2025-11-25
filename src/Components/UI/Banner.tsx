@@ -27,7 +27,7 @@ export default function Banner() {
 				</Link>
 			</Box>
 			<ImageSlider
-				ImgSrc={["MinecraftLogo.png", "Gta.png", "PubgLogo.png"]}
+				imgNames={["MinecraftLogo.png", "Gta.png", "PubgLogo.png"]}
 			/>
 		</Box>
 	);

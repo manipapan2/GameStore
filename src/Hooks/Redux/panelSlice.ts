@@ -14,9 +14,12 @@ const panelSlice = createSlice({
   reducers: {
     togglePanel: (state) => {
       state.isPanelOpen = !state.isPanelOpen;
+    },
+    closePanel: (state) => {
+      state.isPanelOpen = false;
     }
   },
 });
 
-export const { togglePanel } = panelSlice.actions;
+export const { togglePanel, closePanel } = panelSlice.actions;
 export default panelSlice.reducer;

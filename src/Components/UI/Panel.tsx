@@ -11,19 +11,24 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Hooks/Redux/store";
-import { togglePanel } from "@/Hooks/Redux/panelSlice";
+import { togglePanel, closePanel } from "@/Hooks/Redux/panelSlice";
 import { FaDownload } from "react-icons/fa6";
+import { usePathname } from 'next/navigation'
 
 
 export default function Panel() {
 	const isPanelOpen = useSelector((state: RootState) => state.panelState.isPanelOpen)
 	const dispatch = useDispatch()
 
+	const pathName = usePathname();
 	
+	useEffect(() => {
+	  dispatch(closePanel())
+	}, [pathName])
 
 	return (
 		<nav
-			className="fixed left-0 lg:!left-0 top-[100px] z-50 flex h-[calc(100%-100px)] w-full flex-col border-b-0 border-l-0 border-r-[2px] border-t-0 border-solid border-[var(--color-accent)] bg-[var(--color-background)] p-5 pt-8 transition-all md:w-1/3 lg:relative lg:top-auto lg:h-full lg:w-auto"
+			className="fixed left-0 lg:!left-0 top-[100px] z-0 flex h-[calc(100%-100px)] w-full flex-col border-b-0 border-l-0 border-r-[2px] border-t-0 border-solid border-[var(--color-accent)] bg-[var(--color-background)] p-5 pt-8 transition-all md:w-1/3 lg:relative lg:top-auto lg:h-full lg:w-auto"
 			style={
 				{
 					left: isPanelOpen ? '0px' : '-100%'
