@@ -6,6 +6,12 @@ import GameCarousel from "./GameCarousel/GameCarousel";
 import FixedGameCarousel from "./FixedGameCarousel/FixedGameCarousel";
 import { GameType } from "@/Types/games";
 import Image from "next/image";
+import toast, { Toaster } from 'react-hot-toast';
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { IoIosAddCircle } from "react-icons/io";
+
+
 
 const Game = ( { game }: { game: GameType } ) => {
     const [scrollPercentage, setScrollPercentage] = useState<number>(0);
@@ -15,6 +21,27 @@ const Game = ( { game }: { game: GameType } ) => {
     const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
 
     const mockGameIdArray: string[] = ["412354", "2841233", "577753", "6464542", "73453454"]
+
+    const notify_success = () => toast.success(`${game.name} successfuly added to your cart!`,{style: {
+        color: "white",
+        backgroundColor: "var(--color-primary)",
+        border: "2px solid white"
+    }});
+
+    const notify_error = () => toast.error("Something went wrong", {style: {
+        color: "white",
+        backgroundColor: "oklch(63.7% 0.237 25.331)",
+        border: "2px solid white"
+    }});
+
+    const { data, isPending, isSuccess, mutate: addGameToCart } = useMutation({
+        mutationFn: () => {
+            return axios.post("/api/games")
+        },
+        onSuccess: () => notify_success(),
+        onError: () => notify_error()
+    })
+
 
     useEffect(() => {
         const pageContainer = document.getElementById("single-game-page");
@@ -51,6 +78,7 @@ const Game = ( { game }: { game: GameType } ) => {
             id="single-game-page"
             className="rounded-md bg-[var(--color-accent)]"
         >
+            <Toaster />
             <div
                 className="fixed left-0 top-0 z-[100] flex h-full w-full items-center justify-center bg-indigo-600 bg-opacity-10 text-white backdrop-blur-lg transition-all"
                 style={{
@@ -98,14 +126,14 @@ const Game = ( { game }: { game: GameType } ) => {
             </div>
             <div className="w-full p-2">
                 <div className="flex h-fit w-full flex-col items-center justify-between p-2 text-white backdrop-blur-[3px] md:flex-row">
-                    <div>
+                    <div className="w-full">
                         <h1 className="text-3xl md:text-4xl">{game.name}</h1>
                         <h2 className="mt-2">
                             {game.category}
                         </h2>
                     </div>
                     <div className="mt-2 w-full md:mt-0 md:w-fit md:min-w-80">
-                        <Button Icon={"X"}>Add to cart</Button>
+                        <Button Icon={<IoIosAddCircle/>} onClick={addGameToCart} isLoading={isPending} disabled={isSuccess}>{isSuccess ? "Game added to cart" : "Add to cart"}</Button>
                     </div>
                 </div>
                 <h2 className="mb-3 mt-4 text-2xl text-[var(--color-primary)]">

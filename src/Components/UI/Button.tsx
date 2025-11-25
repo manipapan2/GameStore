@@ -59,7 +59,7 @@ export default function Button({
 			onClick={onClick}
 			onChange={onChange ? (e) => onChange(e) : null}
 			disabled={disabled}
-			className={`cursor-pointer text-black bg-[var(--color-primary)] flex justify-center items-center rounded-sm min-w-fit w-full min-h-12 p-2 box-border ${className}`}
+			className={`cursor-pointer text-slate-200 bg-[var(--color-primary)] flex justify-center items-center rounded-sm min-w-fit w-full min-h-12 p-2 box-border ${className}`}
 			style={{
 				opacity: isLoading ? "0" : "1",
 			}}

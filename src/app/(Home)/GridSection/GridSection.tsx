@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { ReactElement } from "react";
+import './GridSection.css'
 
 export default function GridSection(): ReactElement {
 	return (
-		<div className="grid w-full grid-cols-4 grid-rows-4 lg:grid-rows-3">
-			<div className="col-start-1 col-end-5 row-start-1 row-end-1 mb-4 h-40">
+		// <div className="grid w-full grid-cols-4 grid-rows-4 lg:grid-rows-3 grid-row-[auto 1f 1f 1f 1f]">
+		<div className="grid w-full grid-cols-4 grid-rows-[var(--grid-template-row)] lg:grid-rows-[var(--grid-template-row-lg)]">
+			<div className="col-start-1 col-end-5 row-start-1 row-end-2 mb-4 w-full aspect-[16/3]">
 				<div className="group relative h-full w-full cursor-pointer rounded-md">
 					{/* optimize add ::after instead of span */}
 					<Image

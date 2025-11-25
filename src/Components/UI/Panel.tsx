@@ -13,27 +13,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Hooks/Redux/store";
 import { togglePanel, closePanel } from "@/Hooks/Redux/panelSlice";
 import { FaDownload } from "react-icons/fa6";
-import { usePathname } from 'next/navigation'
-
+import { usePathname } from "next/navigation";
 
 export default function Panel() {
-	const isPanelOpen = useSelector((state: RootState) => state.panelState.isPanelOpen)
-	const dispatch = useDispatch()
+	const isPanelOpen = useSelector(
+		(state: RootState) => state.panelState.isPanelOpen,
+	);
+	const dispatch = useDispatch();
 
 	const pathName = usePathname();
-	
+
 	useEffect(() => {
-	  dispatch(closePanel())
-	}, [pathName])
+		dispatch(closePanel());
+	}, [pathName]);
 
 	return (
 		<nav
-			className="fixed left-0 lg:!left-0 top-[100px] z-0 flex h-[calc(100%-100px)] w-full flex-col border-b-0 border-l-0 border-r-[2px] border-t-0 border-solid border-[var(--color-accent)] bg-[var(--color-background)] p-5 pt-8 transition-all md:w-1/3 lg:relative lg:top-auto lg:h-full lg:w-auto"
-			style={
-				{
-					left: isPanelOpen ? '0px' : '-100%'
-				}
-			}
+		// bug - fix overflow-y-auto - cross size is facing a bug
+			className="fixed left-0 top-[100px] z-10 flex h-[calc(100%-100px)] overflow-y-auto overflow-hidden w-full flex-col border-b-0 border-l-0 border-r-[2px] border-t-0 border-solid border-[var(--color-accent)] bg-[var(--color-background)] p-5 pt-8 transition-all md:w-1/3 lg:relative lg:!left-0 lg:top-auto lg:h-full lg:w-auto"
+			style={{
+				left: isPanelOpen ? "0px" : "-100%",
+			}}
 		>
 			<Box
 				className="flex items-center pb-4 transition-all"
@@ -114,6 +114,7 @@ export default function Panel() {
 					isPanelOpen={isPanelOpen}
 				/>
 			</Box>
+			<hr className="h-[1px] w-full bg-slate-600" />
 			<Box className="pb-10 pt-10">
 				<Typography className="mb-2 w-fit pl-3 pr-3 text-xs font-bold text-white">
 					Other

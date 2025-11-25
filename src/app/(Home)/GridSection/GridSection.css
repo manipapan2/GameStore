@@ -1,0 +1,4 @@
+:root {
+    --grid-template-row: auto 1fr 1fr 1fr;
+    --grid-template-row-lg: auto 1fr 1fr;
+}
