@@ -6,98 +6,138 @@ import GameCarousel from "./GameCarousel/GameCarousel";
 import FixedGameCarousel from "./FixedGameCarousel/FixedGameCarousel";
 import { GameType } from "@/Types/games";
 import Image from "next/image";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { IoIosAddCircle } from "react-icons/io";
+import { IoIosRemoveCircle } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { addGame, removeGame } from "@/Hooks/Redux/cartSlice";
 
+const Game = ({ game }: { game: GameType }) => {
+	const [scrollPercentage, setScrollPercentage] = useState<number>(0);
+	const [imageScale, setImageScale] = useState<number>(1);
+	const [isFixedGameCarouselOpen, setIsFixedGameCarouselOpen] =
+		useState<boolean>(false);
+	const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
+	const [isGameAddedToCart, setIsGameAddedToCart] = useState<boolean>(game.is_added_to_cart ? true : false);
 
+	const dispatch = useDispatch();
+	const mockGameIdArray: string[] = [
+		"412354",
+		"2841233",
+		"577753",
+		"6464542",
+		"73453454",
+	];
 
-const Game = ( { game }: { game: GameType } ) => {
-    const [scrollPercentage, setScrollPercentage] = useState<number>(0);
-    const [imageScale, setImageScale] = useState<number>(1);
-    const [isFixedGameCarouselOpen, setIsFixedGameCarouselOpen] =
-        useState<boolean>(false);
-    const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
+	const notify_add_success = () =>
+		toast.success(`${game.name} successfuly added to cart!`, {
+			style: {
+				color: "white",
+				backgroundColor: "var(--color-primary)",
+				border: "2px solid white",
+			},
+		});
 
-    const mockGameIdArray: string[] = ["412354", "2841233", "577753", "6464542", "73453454"]
+	const notify_remove_success = () =>
+		toast.success(`${game.name} successfuly removed from cart!`, {
+			style: {
+				color: "white",
+				backgroundColor: "var(--color-primary)",
+				border: "2px solid white",
+			},
+            icon: "🗑️"
+		});
 
-    const notify_success = () => toast.success(`${game.name} successfuly added to your cart!`,{style: {
-        color: "white",
-        backgroundColor: "var(--color-primary)",
-        border: "2px solid white"
-    }});
+	const notify_error = () =>
+		toast.error("Something went wrong", {
+			style: {
+				color: "white",
+				backgroundColor: "oklch(63.7% 0.237 25.331)",
+				border: "2px solid white",
+			},
+		});
 
-    const notify_error = () => toast.error("Something went wrong", {style: {
-        color: "white",
-        backgroundColor: "oklch(63.7% 0.237 25.331)",
-        border: "2px solid white"
-    }});
+	const {
+		isPending: isAddGamePending,
+		mutate: addGameToCart,
+	} = useMutation({
+		mutationFn: () => {
+			return axios.post("/api/games", { game_id: game.id });
+		},
+		onSuccess: () => {
+			setIsGameAddedToCart(true);
+			dispatch(addGame(game.id));
+			notify_add_success();
+		},
+		onError: () => notify_error(),
+	});
 
-    const { data, isPending, isSuccess, mutate: addGameToCart } = useMutation({
-        mutationFn: () => {
-            return axios.post("/api/games")
-        },
-        onSuccess: () => notify_success(),
-        onError: () => notify_error()
-    })
+	const {
+		isPending: isRemoveGamePending,
+		mutate: removeGameFromCart,
+	} = useMutation({
+		mutationFn: () => {
+			return axios.delete("/api/games", { data: { game_id: game.id } });
+		},
+		onSuccess: () => {
+			setIsGameAddedToCart(false);
+            dispatch(removeGame(game.id));
+			notify_remove_success();
+		},
+		onError: () => notify_error(),
+	});
 
+	useEffect(() => {
+		const pageContainer = document.getElementById("single-game-page");
+		const parentPageContainer = pageContainer?.parentNode as HTMLElement;
 
-    useEffect(() => {
-        const pageContainer = document.getElementById("single-game-page");
-        const parentPageContainer = pageContainer?.parentNode as HTMLElement;
+		if (pageContainer && parentPageContainer) {
+			parentPageContainer.addEventListener("scroll", (e: Event) =>
+				setImageScale(() => {
+					const scrollValue: number = (e.target as HTMLElement)
+						.scrollTop;
+					const scrollPercentageValue: number =
+						(scrollValue * 100) /
+						(parentPageContainer.scrollHeight -
+							parentPageContainer.clientHeight);
+					const maximumScale: number = 1.4;
+					const scaleDifferece: number =
+						(scrollPercentageValue * maximumScale) / 100;
 
-        if (pageContainer && parentPageContainer) {
-            parentPageContainer.addEventListener("scroll", (e: Event) =>
-                setImageScale(() => {
-                    const scrollValue: number = (e.target as HTMLElement)
-                        .scrollTop;
-                    const scrollPercentageValue: number =
-                        (scrollValue * 100) /
-                        (parentPageContainer.scrollHeight -
-                            parentPageContainer.clientHeight);
-                    const maximumScale: number = 1.4;
-                    const scaleDifferece: number =
-                        (scrollPercentageValue * maximumScale) / 100;
+					setScrollPercentage(scrollPercentageValue);
 
-                    setScrollPercentage(scrollPercentageValue);
+					return 1 + scaleDifferece;
+				}),
+			);
+		}
+	}, []);
 
-                    return 1 + scaleDifferece;
-                }),
-            );
-        }
-    }, []);
+	return (
+		<div
+			id="single-game-page"
+			className="rounded-md bg-[var(--color-accent)]"
+		>
+			<Toaster />
+			<div
+				className="fixed left-0 top-0 z-[100] flex h-full w-full items-center justify-center bg-indigo-600 bg-opacity-10 text-white backdrop-blur-lg transition-all"
+				style={{
+					opacity: isFixedGameCarouselOpen ? "1" : "0",
+					pointerEvents: isFixedGameCarouselOpen ? "auto" : "none",
+				}}
+			>
+				<FixedGameCarousel
+					listOfImageName={mockGameIdArray}
+					selectedSlideIndex={selectedSlideIndex}
+					disabled={!isFixedGameCarouselOpen}
+					onClose={() => setIsFixedGameCarouselOpen((prev) => !prev)}
+				/>
+			</div>
 
-    useEffect(() => {
-      console.log('is fixed open', isFixedGameCarouselOpen)
-    }, [isFixedGameCarouselOpen])
-    
-
-    return (
-        <div
-            id="single-game-page"
-            className="rounded-md bg-[var(--color-accent)]"
-        >
-            <Toaster />
-            <div
-                className="fixed left-0 top-0 z-[100] flex h-full w-full items-center justify-center bg-indigo-600 bg-opacity-10 text-white backdrop-blur-lg transition-all"
-                style={{
-                    opacity: isFixedGameCarouselOpen ? "1" : "0",
-                    pointerEvents: isFixedGameCarouselOpen ? "auto" : "none",
-                }}
-            >
-                <FixedGameCarousel
-                    listOfImageName={mockGameIdArray}
-                    selectedSlideIndex={selectedSlideIndex}
-                    disabled={!isFixedGameCarouselOpen}
-                    onClose={() => setIsFixedGameCarouselOpen((prev) => !prev)}
-                    
-                />
-            </div>
-
-            <div className="relative aspect-[16/8] w-full overflow-hidden rounded-t-md md:aspect-[16/4] !pointer-events-none" >
-                {/* For optimization change scale to background size */}
-                {/* <img
+			<div className="!pointer-events-none relative aspect-[16/8] w-full overflow-hidden rounded-t-md md:aspect-[16/4]">
+				{/* For optimization change scale to background size */}
+				{/* <img
                     src={`/assets/${game.id}.png`}
                     className="max-h-full w-full select-none rounded-t-md object-cover"
                     alt="test"
@@ -110,54 +150,66 @@ const Game = ( { game }: { game: GameType } ) => {
                         opacity: `${1 - (scrollPercentage / 100)}`,
                     }}
                 /> */}
-                <Image
-                    src={`/assets/${game.id}.png`}
-                    className="max-h-full w-full select-none rounded-t-md object-cover"
-                    alt="test"
-                    width={1600}
-                    height={900}
-                    quality={100}
-                    // cover
-                    style={{
-                        transform: `scale(${imageScale})`,
-                        opacity: `${1 - (scrollPercentage / 100)}`,
-                    }}
-                />
-            </div>
-            <div className="w-full p-2">
-                <div className="flex h-fit w-full flex-col items-center justify-between p-2 text-white backdrop-blur-[3px] md:flex-row">
-                    <div className="w-full">
-                        <h1 className="text-3xl md:text-4xl">{game.name}</h1>
-                        <h2 className="mt-2">
-                            {game.category}
-                        </h2>
-                    </div>
-                    <div className="mt-2 w-full md:mt-0 md:w-fit md:min-w-80">
-                        <Button Icon={<IoIosAddCircle/>} onClick={addGameToCart} isLoading={isPending} disabled={isSuccess}>{isSuccess ? "Game added to cart" : "Add to cart"}</Button>
-                    </div>
-                </div>
-                <h2 className="mb-3 mt-4 text-2xl text-[var(--color-primary)]">
-                    Description
-                </h2>
-                <p className="text-white">
-                    {game.description}
-                </p>
+				<Image
+					src={`/assets/${game.id}.png`}
+					className="max-h-full w-full select-none rounded-t-md object-cover"
+					alt="test"
+					width={1600}
+					height={900}
+					quality={100}
+					// cover
+					style={{
+						transform: `scale(${imageScale})`,
+						opacity: `${1 - scrollPercentage / 100}`,
+					}}
+				/>
+			</div>
+			<div className="w-full p-2">
+				<div className="flex h-fit w-full flex-col items-center justify-between p-2 text-white backdrop-blur-[3px] md:flex-row">
+					<div className="w-full">
+						<h1 className="text-3xl md:text-4xl">{game.name}</h1>
+						<h2 className="mt-2">{game.category}</h2>
+					</div>
+					<div className="mt-2 w-full md:mt-0 md:w-fit md:min-w-80">
+						<Button
+							Icon={
+								isGameAddedToCart ? (
+									<IoIosRemoveCircle />
+								) : (
+									<IoIosAddCircle />
+								)
+							}
+							onClick={() => {
+								if (isGameAddedToCart) removeGameFromCart();
+								else addGameToCart();
+							}}
+							isLoading={isAddGamePending || isRemoveGamePending}
+							className={`${isGameAddedToCart && "bg-red-600"}`}
+						>
+							{isGameAddedToCart ? "Game is added to cart" : "Add to cart"}
+						</Button>
+					</div>
+				</div>
+				<h2 className="mb-3 mt-4 text-2xl text-[var(--color-primary)]">
+					Description
+				</h2>
+				<p className="text-white">{game.description}</p>
 
-                <div>
-                    <h2 className="mb-3 mt-4 text-2xl text-[var(--color-primary)]">
-                        Images
-                    </h2>
-                    <GameCarousel
-                        listOfImages={mockGameIdArray}
-                        onClickEach={(index: number) => {
-                            setSelectedSlideIndex(index);
-                            setIsFixedGameCarouselOpen(true);
-                        }}
-                    />
-                </div>
-            </div>
-        </div>
-    );
+				<div>
+					<h2 className="mb-3 mt-4 text-2xl text-[var(--color-primary)]">
+						Images
+					</h2>
+					<GameCarousel
+						listOfImages={mockGameIdArray}
+						onClickEach={(index: number) => {
+							setSelectedSlideIndex(index);
+							setIsFixedGameCarouselOpen(true);
+						}}
+					/>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Game;

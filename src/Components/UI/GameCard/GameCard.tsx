@@ -1,19 +1,9 @@
 "use client";
 import "@/styles/globals.css";
 import React, { useEffect, useState } from "react";
-// import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Typography } from "@mui/material";
-// import CheckIcon from "@mui/icons-material/Check";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { addItem } from "@/Hooks/Redux/gamesSlice";
-// import Title from "../Title";
-// import Button from "@/Components/UI/Button";
 import { IoIosStar } from "react-icons/io";
-// import { IoIosAddCircleOutline } from "react-icons/io";
-// import { ToastContainer, toast } from "react-toastify";
-// import Toast from "@/Utils/Toast";
 import Link from "next/link";
 
 interface GameCardProps {
@@ -33,18 +23,16 @@ export default function GameCard({
 	Price,
 	Category,
 }: GameCardProps) {
-
-
 	return (
 		<Link
 			href={`/games/${Name}`}
-			className="relative z-10 m-5 flex h-fit w-full flex-col rounded-lg bg-[var(--CardColor)] outline-offset-8 outline-none outline-transparent transition-all outline-[3px] hover:outline-offset-0 hover:outline-white md:h-60 md:w-64"
+			className="relative z-10 m-5 flex h-fit w-full flex-col rounded-lg bg-[var(--CardColor)] outline-none outline-[3px] outline-offset-8 outline-transparent transition-all hover:outline-offset-0 hover:outline-white md:h-60 md:w-64"
 		>
 			<div className="relative aspect-video w-full">
 				<Image
 					src={ImageSrc}
 					alt={`${Name} Image`}
-					className="rounded-tl-lg rounded-tr-lg object-cover w-full h-full"
+					className="h-full w-full rounded-tl-lg rounded-tr-lg object-cover"
 					loading="lazy"
 					width={1600}
 					height={900}

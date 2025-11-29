@@ -1,14 +1,12 @@
 "use client";
-
 import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import { MdVideogameAsset } from "react-icons/md";
-import { BiLibrary } from "react-icons/bi";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { IoCloseSharp } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Hooks/Redux/store";
 import { togglePanel, closePanel } from "@/Hooks/Redux/panelSlice";

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import itemsReducer from "./gamesSlice";
-import panelReducer from "./panelSlice"
+import cartReducer from "./cartSlice";
+import panelReducer from "./panelSlice";
 
 const store = configureStore({
 	reducer: {
-		games: itemsReducer,
+		cart: cartReducer,
 		panelState: panelReducer,
 	},
 });

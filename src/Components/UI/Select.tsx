@@ -2,14 +2,14 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 
 interface SelectProps {
 	label: string;
-	value: any;
+	value: string | number;
 	Options: OptionsProps[];
 	onChange?: (e: any) => any;
 }
 
 export interface OptionsProps {
 	text: string;
-	value: any;
+	value: string | number;
 }
 
 export default function SelectComp({
@@ -55,7 +55,7 @@ export default function SelectComp({
 					<MenuItem value="">
 						<em>All</em>
 					</MenuItem>
-					{Options.map((option: OptionsProps, index: number) => (
+					{Options.map((option: OptionsProps) => (
 						<MenuItem key={option.value} value={option.value}>{option.text}</MenuItem>
 					))}
 				</Select>

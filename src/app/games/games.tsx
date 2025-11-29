@@ -30,7 +30,7 @@ export default function Games({
 
 	const rate_list: rateNumberRange[] = ["1", "2", "3", "4"];
 
-	const {data, isPending, mutate: mutateCategory} = useMutation({
+	const {mutate: mutateCategory} = useMutation({
 		mutationFn: () => {
 			return  axios.get('/api/games', {
 				params: {

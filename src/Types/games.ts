@@ -12,6 +12,7 @@ export type GameType = {
 	price: number;
 	category: GameCategoryType;
 	description: string;
+	is_added_to_cart?: boolean;
 };
 
 export interface GamesProps {

@@ -8,11 +8,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function Cart() {
-	const games = useSelector((state: RootState) => state.games.items);
+	const games = useSelector((state: RootState) => state.cart.game_ids);
 
-	useEffect(() => {
-		console.log(games);
-	}, [games]);
 
 
 	// const { data, isLoading } = useQuery<any>({

@@ -16,7 +16,7 @@ import Link from "next/link";
 
 export default function Header() {
 	const dispatch = useDispatch<AppDispatch>();
-	const items = useSelector((state: RootState) => state.games.items);
+	const games = useSelector((state: RootState) => state.cart.game_ids);
 	const isPanelOpen = useSelector(
 		(state: RootState) => state.panelState.isPanelOpen
 	);
@@ -51,7 +51,7 @@ export default function Header() {
 					<Link href={"/cart"}>
 						<IconButton>
 							<Badge
-								badgeContent={items.length}
+								badgeContent={games.length}
 								color="secondary"
 							>
 								<IoCartOutline

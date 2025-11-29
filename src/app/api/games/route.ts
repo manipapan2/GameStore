@@ -1,26 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GameType, GameCategoryType, categories } from "@/Types/games";
-import { games } from "../(db)/games"; 
-
-const user: any = {
-	name: "manipapan2",
-	money: 250,
-	ownedGamesIds: ["577753", "73453454"],
-	gamesAddedIds: ["6464542"],
-};
-
-// export async function GET(req: NextRequest) {
-//   return NextResponse.json({test: "good"}, {status: 401})
-// }
+import { games } from "../(db)/games";
+import { user } from "../(db)/user";
 
 export async function GET(req: NextRequest) {
 	const searchParams = req.nextUrl.searchParams;
 	const name = searchParams.get("name");
+	const search_name = searchParams.get("search_name");
 	const id = searchParams.get("id");
 	const rate = searchParams.get("rate");
 	const category = searchParams.get("category");
 
-	let result: any = [...games];
+	let result: GameType[] | GameType = [...games];
 
 	if (id) {
 		const idStr = id as string;
@@ -51,13 +42,13 @@ export async function GET(req: NextRequest) {
 				.includes(nameStrNormalized),
 		)[0];
 
+		if(user.games_added.includes(foundGame.id)) {
+			foundGame.is_added_to_cart = true
+		}
+
 		if (foundGame) {
-			console.log('eeeeeeee')
-			console.log(foundGame)
-			return NextResponse.json(
-				foundGame,
-				{ status: 200 },
-			);
+			console.log(foundGame);
+			return NextResponse.json(foundGame, { status: 200 });
 		} else {
 			return NextResponse.json(
 				{
@@ -66,6 +57,23 @@ export async function GET(req: NextRequest) {
 				{ status: 400 },
 			);
 		}
+	}
+	if (search_name) {
+		const foundGames = [];
+
+		// interesting
+		for (let i = 0; i < games.length; i++) {
+			const gameName = games[i].name;
+
+			if (
+				gameName
+					.toLocaleLowerCase()
+					.indexOf(search_name.toLocaleLowerCase()) > -1
+			) {
+				foundGames.push(games[i]);
+			}
+		}
+		return NextResponse.json(foundGames, { status: 200 });
 	}
 	if (rate) {
 		const rateNum = parseFloat(rate as string);
@@ -82,7 +90,7 @@ export async function GET(req: NextRequest) {
 		result = filteredGames;
 	}
 	if (category) {
-		if (!category || !categories.includes(category as GameCategoryType) ) {
+		if (!category || !categories.includes(category as GameCategoryType)) {
 			return NextResponse.json(
 				{ error: "Wrong Category" },
 				{ status: 400 },
@@ -96,9 +104,66 @@ export async function GET(req: NextRequest) {
 		result = filteredGames;
 	}
 
+	return NextResponse.json(result, { status: 200 });
+}
+
+export async function POST(req: NextRequest) {
+	// interesting
+	const body = await req.json();
+	const { game_id } = body;
+
+	if (!game_id) {
+		return NextResponse.json(
+			{ message: "game id is needed" },
+			{ status: 400 },
+		);
+	}
+
+	const foundGame = games.filter((game) => game.id == game_id)[0].id
+
+	if (user.games_added.includes(foundGame)) {
+		return NextResponse.json(
+			{ message: "game is already added" },
+			{ status: 400 },
+		);
+	}
+
+	user.games_added.push(foundGame)
 
 	return NextResponse.json(
-		result,
+		{ message: "game added to cart successfuly" },
+		{ status: 200 },
+	);
+}
+
+
+
+export async function DELETE(req: NextRequest) {
+	const body = await req.json();
+	const { game_id } = body;
+
+	if (!game_id) {
+		return NextResponse.json(
+			{ message: "game id is needed" },
+			{ status: 400 },
+		);
+	}
+
+	const foundGame = games.filter((game) => game.id == game_id)[0].id
+
+	if (!user.games_added.includes(foundGame)) {
+		return NextResponse.json(
+			{ message: "game does not exist in the cart" },
+			{ status: 400 },
+		);
+	}
+
+	const indexOfGame = user.games_added.indexOf(foundGame)
+	const spliced_games = user.games_added.slice(indexOfGame - 1, 1)
+	user.games_added = spliced_games;
+
+	return NextResponse.json(
+		{ message: "game removed from the cart successfuly" },
 		{ status: 200 },
 	);
 }

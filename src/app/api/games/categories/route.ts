@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { categories } from "@/Types/games";
 
 
-export function GET(req: NextRequest) {
+export function GET() {
 	return NextResponse.json(categories);
 }

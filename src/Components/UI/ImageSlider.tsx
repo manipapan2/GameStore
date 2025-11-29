@@ -1,6 +1,4 @@
 "use client";
-
-import { Box } from "@mui/material";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { IoIosStar } from "react-icons/io";
 
 interface CarouselSlideProps {
@@ -11,9 +12,11 @@ const CarouselSlide = ({ imageName, name, rate }: CarouselSlideProps) => {
 		<div
 			className={`group relative ml-3 mr-3 h-96 min-w-[250px] cursor-pointer rounded-md bg-[var(--color-accent)] first:ml-0 first:mr-3 last:ml-3 last:mr-0`}
 		>
-			<img
+			<Image
 				src={`/assets/${imageName}`}
 				alt={`${name} image`}
+				width={1600}
+				height={900}
 				className="h-full w-full select-none rounded-md object-cover hover:cursor-pointer"
 			/>
 
