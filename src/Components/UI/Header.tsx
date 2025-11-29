@@ -1,10 +1,5 @@
 "use client";
-import {
-	IconButton,
-	Badge,
-	Avatar,
-	Typography,
-} from "@mui/material";
+import { IconButton, Badge, Avatar, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { togglePanel } from "@/Hooks/Redux/panelSlice";
 import { RootState, AppDispatch } from "@/Hooks/Redux/store";
@@ -18,19 +13,21 @@ export default function Header() {
 	const dispatch = useDispatch<AppDispatch>();
 	const games = useSelector((state: RootState) => state.cart.game_ids);
 	const isPanelOpen = useSelector(
-		(state: RootState) => state.panelState.isPanelOpen
+		(state: RootState) => state.panelState.isPanelOpen,
 	);
 
 	return (
-		<header
-			className="flex h-[100px] w-full flex-row items-center justify-between border-[1px] border-l-0 border-r-0 border-t-0 border-solid border-[var(--color-accent)] bg-transparent p-8 shadow-none lg:h-auto lg:justify-end pl-5 pr-5"
-		>
+		<header className="flex h-[100px] w-full flex-row items-center justify-between border-[1px] border-l-0 border-r-0 border-t-0 border-solid border-[var(--color-accent)] bg-transparent p-8 pl-5 pr-5 shadow-none lg:h-auto lg:justify-end">
 			<IconButton
 				onClick={() => dispatch(togglePanel())}
-				className="flex items-center justify-center p-3 lg:hidden"
-				sx={{
-					display: {lg: "hidden"}
-				}}
+				className="items-center justify-center p-3"
+				// sx={{
+				// 	display: { lg: "hidden", xs: "flex"}
+				// }}
+
+				sx={(theme) => ({
+					display: {xs: "flex", lg: "none",},
+				})}
 			>
 				{isPanelOpen ? (
 					<IoCloseSharp className="text-3xl text-white" />
@@ -42,10 +39,7 @@ export default function Header() {
 				<div>
 					<IconButton>
 						<Badge badgeContent={0} color="secondary">
-							<IoMdNotificationsOutline
-								color="white"
-								size={25}
-							/>
+							<IoMdNotificationsOutline color="white" size={25} />
 						</Badge>
 					</IconButton>
 					<Link href={"/cart"}>
@@ -64,7 +58,10 @@ export default function Header() {
 					</Link>
 				</div>
 				<div className="ml-3 flex items-center">
-					<Typography overflow={'hidden'} color="white" display={'flex'}
+					<Typography
+						overflow={"hidden"}
+						color="white"
+						display={"flex"}
 					>
 						manipapan2
 					</Typography>
@@ -73,7 +70,7 @@ export default function Header() {
 						alt="Avatar Image"
 						sx={{
 							marginLeft: "0.5rem",
-							background: "var(--color-primary)"
+							background: "var(--color-primary)",
 						}}
 					/>
 				</div>

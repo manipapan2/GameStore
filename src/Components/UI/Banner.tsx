@@ -3,6 +3,9 @@ import { Box, Typography } from "@mui/material";
 import VideogameAssetIcon from "@mui/icons-material/VideogameAsset";
 import CustomButton from "./Button";
 import Link from "next/link";
+import MinecraftImage from '../../../Public/assets/MinecraftLogo.png'
+import GtaImage from '../../../Public/assets/Gta.png'
+import PubgImage from '../../../Public/assets/PubgLogo.png'
 
 export default function Banner() {
 	return (
@@ -27,7 +30,7 @@ export default function Banner() {
 				</Link>
 			</Box>
 			<ImageSlider
-				imgNames={["MinecraftLogo.png", "Gta.png", "PubgLogo.png"]}
+				images={[MinecraftImage, GtaImage, PubgImage]}
 			/>
 		</Box>
 	);

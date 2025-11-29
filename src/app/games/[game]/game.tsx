@@ -1,5 +1,4 @@
 "use client";
-
 import Button from "@/Components/UI/Button";
 import { useEffect, useState } from "react";
 import GameCarousel from "./GameCarousel/GameCarousel";

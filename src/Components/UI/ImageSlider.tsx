@@ -1,28 +1,29 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { StaticImageData } from "next/image";
 
 interface ImageSliderProps {
-	imgNames: string[];
+	images: StaticImageData[];
 }
 
-export default function ImageSlider({ imgNames }: ImageSliderProps) {
+export default function ImageSlider({ images }: ImageSliderProps) {
 	const [showNumIndex, setShowNumIndex] = useState(0);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setShowNumIndex((prev) => (prev + 1) % imgNames.length);
+			setShowNumIndex((prev) => (prev + 1) % images.length);
 		}, 3000);
 
 		return () => clearInterval(interval);
-	}, [imgNames.length]);
+	}, [images.length]);
 
 	return (
 		<div className="relative flex aspect-video w-full md:w-3/5 lg:w-1/3 items-center overflow-hidden">
-			{imgNames.map((src, index) => (
+			{images.map((image, index) => (
 				<ImageComp
 					key={index}
-					imgName={src}
+					image={image}
 					Index={index}
 					ActiveIndex={showNumIndex}
 				/>
@@ -32,12 +33,12 @@ export default function ImageSlider({ imgNames }: ImageSliderProps) {
 }
 
 interface ImageProps {
-	imgName: string;
+	image: StaticImageData;
 	Index: number;
 	ActiveIndex: number;
 }
 
-export function ImageComp({ imgName, Index, ActiveIndex }: ImageProps) {
+export function ImageComp({ image, Index, ActiveIndex }: ImageProps) {
 	return (
 		<div
 			className="absolute top-0 flex h-full w-full items-center justify-center transition-all duration-500"
@@ -49,7 +50,7 @@ export function ImageComp({ imgName, Index, ActiveIndex }: ImageProps) {
 		>
 			<div className="aspect-square max-w-[70%] flex justify-center items-center">
 				<Image
-					src={`/assets/${imgName}`}
+					src={image}
 					alt={`Slider Image ${Index + 1}`}
 					width={500}
 					height={500}

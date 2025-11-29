@@ -8,6 +8,9 @@ import "@/styles/globals.css";
 // import Head from "next/head";
 import type { Metadata, Viewport } from "next";
 import Footer from "@/Components/UI/Footer";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './mui-theme';
 
 // const geistSans = localFont({
 // 	src: "/fonts/GeistVF.woff",
@@ -25,8 +28,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Find Whatever suits you best and Play",
+	title: "Home",
+	description: "Find Whatever suits you best and Play",
 };
 
 export default function RootLayout({
@@ -34,8 +37,6 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-
-
 	return (
 		<html lang="en">
 			<body
@@ -44,16 +45,20 @@ export default function RootLayout({
 			>
 				<ReduxProvider>
 					<ReactQueryProvider>
-						<div className="flex w-full">
-							<Panel />
-							<div className="flex h-full w-full max-w-full flex-col overflow-x-hidden">
-								<Header />
-								<div className="flex h-full w-full max-w-full flex-col overflow-x-hidden p-3">
-									{children}
-									<Footer />
+						<AppRouterCacheProvider>
+							<ThemeProvider theme={theme}>
+								<div className="flex w-full">
+									<Panel />
+									<div className="flex h-full w-full max-w-full flex-col overflow-x-hidden">
+										<Header />
+										<div className="flex h-full w-full max-w-full flex-col overflow-x-hidden p-3">
+											{children}
+											<Footer />
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
+							</ThemeProvider>
+						</AppRouterCacheProvider>
 					</ReactQueryProvider>
 				</ReduxProvider>
 			</body>
