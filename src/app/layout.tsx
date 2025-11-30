@@ -12,11 +12,11 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './mui-theme';
 
-// const RobotoFont = localFont({
-// 	src: "/fonts/Roboto.",
-// 	variable: "--font-geist-sans",
-// 	weight: "100 900",
-// });
+const RobotoFont = localFont({
+	src: "../../Public/assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf",
+	variable: "--font-Roboto",
+	weight: "100 900",
+});
 // const geistMono = localFont({
 // 	src: "/fonts/GeistMonoVF.woff",
 // 	variable: "--font-geist-mono",
@@ -40,7 +40,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				// className={`${geistSans.variable} ${geistMono.variable} flex antialiased`}
+				// className={`flex antialiased ${RobotoFont.variable}`}
 				className={`flex antialiased`}
 			>
 				<ReduxProvider>

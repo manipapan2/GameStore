@@ -30,9 +30,11 @@ export default function Games({
 
 	const rate_list: rateNumberRange[] = ["1", "2", "3", "4"];
 
+	const BACKEND_URL = process.env.BACKEND_URL
+
 	const {mutate: mutateCategory} = useMutation({
 		mutationFn: () => {
-			return  axios.get('/api/games', {
+			return  axios.get(`${BACKEND_URL}/api/games`, {
 				params: {
 					rate: rate,
 					category: category,

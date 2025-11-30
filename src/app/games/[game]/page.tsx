@@ -8,8 +8,8 @@ import { GameType } from "@/Types/games";
 // import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 async function getGame(params: any) {
-	const backend_url = process.env.BACK_END_URL;
-	let requestURL: string = `${backend_url}/api/games`
+	const BACKEND_URL = process.env.BACKEND_URL;
+	let requestURL: string = `${BACKEND_URL}/api/games`
 
 	const gameName: string = params.params?.game
 

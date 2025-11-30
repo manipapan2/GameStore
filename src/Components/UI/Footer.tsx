@@ -19,34 +19,34 @@ export default function Footer() {
 				<div className="mt-4 md:mt-0 w-fit">
 					<Typography
 						variant="h4"
-						className="text-3xl mb-4 text-[var(--color-primary)]"
+						sx={{
+							fontSize: "1.875rem ",
+							marginBottom: "1rem",
+							color: "var(--color-primary)"
+						}}
 					>
 						Social
 					</Typography>
 					<div className="flex">
 						<Tooltip
 							title={"Github"}
-							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
-							<SiGithub size={30} />
+							<SiGithub size={30} className="cursor-pointer mr-2 transition-all text-slate-500 hover:text-[var(--color-primary)]"/>
 						</Tooltip>
 						<Tooltip
 							title={"Instagram"}
-							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
-							<AiFillInstagram size={30} />
+							<AiFillInstagram size={30} className="cursor-pointer mr-2 transition-all text-slate-500 hover:text-[var(--color-primary)]"/>
 						</Tooltip>
 						<Tooltip
 							title={"LinkedIn"}
-							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
-							<FaLinkedin size={30} />
+							<FaLinkedin size={30} className="cursor-pointer mr-2 transition-all text-slate-500 hover:text-[var(--color-primary)]"/>
 						</Tooltip>
 						<Tooltip
 							title={"X"}
-							className="mr-2 transition-all hover:cursor-pointer text-slate-600 hover:text-[var(--color-primary)]"
 						>
-							<FaSquareXTwitter size={30} />
+							<FaSquareXTwitter size={30} className="cursor-pointer transition-all text-slate-500 hover:text-[var(--color-primary)]"/>
 						</Tooltip>
 					</div>
 				</div>
@@ -54,7 +54,11 @@ export default function Footer() {
 				<div className="mt-4 md:mt-0">
 					<Typography
 						variant="h4"
-						className="text-3xl mb-4 text-[var(--color-primary)]"
+						sx={{
+							fontSize: "1.875rem ",
+							marginBottom: "1rem",
+							color: "var(--color-primary)"
+						}}
 					>
 						Support
 					</Typography>
@@ -67,7 +71,11 @@ export default function Footer() {
 				<div className="mt-4 md:mt-0">
 					<Typography
 						variant="h4"
-						className="text-3xl mb-4 text-[var(--color-primary)]"
+						sx={{
+							fontSize: "1.875rem ",
+							marginBottom: "1rem",
+							color: "var(--color-primary)"
+						}}
 					>
 						Contact US
 					</Typography>
@@ -98,7 +106,10 @@ export default function Footer() {
 				<i className="mr-2 text-white">
 					<FaRegCopyright size={17} />
 				</i>
-				<Typography variant="h6" className="text-base text-slate-400">
+				<Typography variant="h6" sx={{
+					fontSize: "1rem",
+					color: "oklch(55.4% 0.046 257.417)"
+				}}>
 					All Rights Reserved
 				</Typography>
 			</div>
