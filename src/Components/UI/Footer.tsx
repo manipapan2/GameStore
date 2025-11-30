@@ -1,4 +1,4 @@
-import { Box, Tooltip, Typography } from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import React, { ReactNode } from "react";
 import { FaRegCopyright } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -15,7 +15,7 @@ export default function Footer() {
 	return (
 		// <footer className="mt-4 rounded-lg bg-[var(--color-accent)] p-4">
 		<footer className="mt-4 rounded-lg p-4 z-0 relative">
-			<Box className="flex justify-between flex-wrap md:flex-row md:items-start md:justify-between">
+			<div className="flex justify-between flex-wrap md:flex-row md:items-start md:justify-between">
 				<div className="mt-4 md:mt-0 w-fit">
 					<Typography
 						variant="h4"
@@ -93,15 +93,15 @@ export default function Footer() {
 						Some Address
 					</UnderlineLink>
 				</div>
-			</Box>
-			<Box className="mt-4 flex items-center">
+			</div>
+			<div className="mt-4 flex items-center">
 				<i className="mr-2 text-white">
 					<FaRegCopyright size={17} />
 				</i>
 				<Typography variant="h6" className="text-base text-slate-400">
 					All Rights Reserved
 				</Typography>
-			</Box>
+			</div>
 		</footer>
 	);
 }

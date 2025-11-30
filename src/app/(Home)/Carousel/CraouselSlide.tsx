@@ -1,19 +1,19 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { IoIosStar } from "react-icons/io";
 
 interface CarouselSlideProps {
-	imageName: string;
+	image: StaticImageData;
 	name: string;
 	rate: string;
 }
 
-const CarouselSlide = ({ imageName, name, rate }: CarouselSlideProps) => {
+const CarouselSlide = ({ image, name, rate }: CarouselSlideProps) => {
 	return (
 		<div
 			className={`group relative ml-3 mr-3 h-96 min-w-[250px] cursor-pointer rounded-md bg-[var(--color-accent)] first:ml-0 first:mr-3 last:ml-3 last:mr-0`}
 		>
 			<Image
-				src={`/assets/${imageName}`}
+				src={image}
 				alt={`${name} image`}
 				width={1600}
 				height={900}

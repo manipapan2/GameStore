@@ -1,5 +1,5 @@
 "use client";
-import { IconButton, Badge, Avatar, Typography } from "@mui/material";
+import { IconButton, Badge, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { togglePanel } from "@/Hooks/Redux/panelSlice";
 import { RootState, AppDispatch } from "@/Hooks/Redux/store";
@@ -7,7 +7,8 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { IoCloseSharp } from "react-icons/io5";
-import Link from "next/link";
+import AvatarImage from '../../../Public/assets/Avatar.png'
+import Image from "next/image";
 
 export default function Header() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -42,20 +43,19 @@ export default function Header() {
 							<IoMdNotificationsOutline color="white" size={25} />
 						</Badge>
 					</IconButton>
-					<Link href={"/cart"}>
+					{/* <Link href={"/cart"}> */}
 						<IconButton>
 							<Badge
 								badgeContent={games.length}
 								color="secondary"
 							>
 								<IoCartOutline
-									// className="text-2xl"
 									color="white"
 									size={25}
 								/>
 							</Badge>
 						</IconButton>
-					</Link>
+					{/* </Link> */}
 				</div>
 				<div className="ml-3 flex items-center">
 					<Typography
@@ -65,14 +65,9 @@ export default function Header() {
 					>
 						manipapan2
 					</Typography>
-					<Avatar
-						src="/assets/Avatar.png"
-						alt="Avatar Image"
-						sx={{
-							marginLeft: "0.5rem",
-							background: "var(--color-primary)",
-						}}
-					/>
+					<div className="w-10 h-10 bg-slate-600 rounded-full ml-2">
+						<Image src={AvatarImage} alt="Avatar image" width={500} height={500} className="object-cover rounded-full max-w-full max-h-full"/>
+					</div>
 				</div>
 			</div>
 		</header>

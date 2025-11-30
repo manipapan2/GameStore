@@ -1,5 +1,5 @@
 "use client";
-import { Box, IconButton, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import { MdVideogameAsset } from "react-icons/md";
@@ -33,14 +33,14 @@ export default function Panel() {
 				left: isPanelOpen ? "0px" : "-100%",
 			}}
 		>
-			<Box
+			<div
 				className="flex items-center pb-4 transition-all"
-				sx={{
+				style={{
 					paddingRight: isPanelOpen ? "12px" : "0",
 					paddingLeft: isPanelOpen ? "12px" : "0",
 				}}
 			>
-				<Box className="hidden h-[50px] lg:flex">
+				<div className="hidden h-[50px] lg:flex">
 					<MdVideogameAsset
 						className="bg-gradient-to-r text-[var(--Purple)]"
 						style={{
@@ -58,7 +58,7 @@ export default function Panel() {
 					>
 						Unity
 					</Typography>
-				</Box>
+				</div>
 				<IconButton
 					onClick={() => dispatch(togglePanel())}
 					className="hidden items-center justify-center p-3 lg:flex"
@@ -69,11 +69,11 @@ export default function Panel() {
 						<HiOutlineMenuAlt4 className="text-3xl text-white" />
 					)}
 				</IconButton>
-			</Box>
+			</div>
 			<Typography className="mb-2 w-fit pl-3 pr-3 text-xs font-bold text-white">
 				Feeds
 			</Typography>
-			<Box className="w-full border-b-[1px] border-slate-600 pb-10">
+			<div className="w-full border-b-[1px] border-slate-600 pb-10">
 				<NavLink
 					href="/"
 					icon={
@@ -111,9 +111,9 @@ export default function Panel() {
 					label="Download"
 					isPanelOpen={isPanelOpen}
 				/>
-			</Box>
+			</div>
 			<hr className="h-[1px] w-full bg-slate-600" />
-			<Box className="pb-10 pt-10">
+			<div className="pb-10 pt-10">
 				<Typography className="mb-2 w-fit pl-3 pr-3 text-xs font-bold text-white">
 					Other
 				</Typography>
@@ -127,7 +127,7 @@ export default function Panel() {
 					label="Setting"
 					isPanelOpen={isPanelOpen}
 				/>
-			</Box>
+			</div>
 		</nav>
 	);
 }

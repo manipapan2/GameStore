@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Box, Snackbar, Alert } from "@mui/material";
+import { Snackbar, Alert } from "@mui/material";
 import Title from "./Title";
 import Skeleton from "./Skeleton";
 import GameCard from "@/Components/UI/GameCard/GameCard";
@@ -57,11 +57,11 @@ export default function GameCards() {
 	console.log(games);
 
 	return (
-		<Box className="w-full rounded-md border-transparent">
+		<div className="w-full rounded-md border-transparent">
 			<Title Text={"New Games"} />
 
 			{data && Array.isArray(data) ? (
-				<Box className="flex h-fit w-full flex-wrap justify-center lg:justify-between">
+				<div className="flex h-fit w-full flex-wrap justify-center lg:justify-between">
 					{games.map((game: Game) => (
 						<GameCard
 							key={game.Id}
@@ -73,14 +73,14 @@ export default function GameCards() {
 							Category={game.Category}
 						/>
 					))}
-				</Box>
+				</div>
 			) : (
-				<Box className="flex h-fit w-full flex-wrap justify-center lg:justify-between">
+				<div className="flex h-fit w-full flex-wrap justify-center lg:justify-between">
 					{Array.from({ length: 4 }).map((_, i) => (
 						<Skeleton className="m-10 h-72 w-64" key={i} />
 					))}
-				</Box>
+				</div>
 			)}
-		</Box>
+		</div>
 	);
 }

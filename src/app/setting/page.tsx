@@ -1,6 +1,6 @@
 import Button from "@/Components/UI/Button";
 import Title from "@/Components/UI/Title";
-import { Box, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 import { ReactNode } from "react";
 import { IoMdNotifications } from "react-icons/io";
 import { BsCameraVideoFill } from "react-icons/bs";
@@ -9,15 +9,15 @@ import { Metadata } from "next";
 
 const Setting: React.FC = () => {
     return (
-        <Box>
+        <div>
             <Title Text="Permisions"/>
 
-            <Box className="bg-[var(--color-accent)] rounded-sm">
+            <div className="bg-[var(--color-accent)] rounded-sm">
                 <SettingOption IsActive={true} Icon={<IoMdNotifications size={30}/>} Text={'Notification'}/>
                 <SettingOption IsActive={false} Icon={<BsCameraVideoFill size={30}/>} Text={'Camera'}/>
                 <SettingOption IsActive={true} Icon={<FaLocationDot size={30}/>} Text={'Location'}/>
-            </Box>
-        </Box>
+            </div>
+        </div>
     )
 }
 

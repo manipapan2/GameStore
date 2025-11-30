@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 interface CartCardProps {
 	Name: string | number;
@@ -7,8 +7,8 @@ interface CartCardProps {
 
 export default function CartCard({ Name }: CartCardProps) {
 	return (
-		<Box className="flex h-fit w-full bg-[var(--CardColor)]">
-			<Box className="relative aspect-video w-1/3">
+		<div className="flex h-fit w-full bg-[var(--CardColor)]">
+			<div className="relative aspect-video w-1/3">
 				{/* <Image
 					src={`/assets/${Name.replace(/\s+/g, "")}.png`}
 					alt={`${Name} Image`}
@@ -16,8 +16,8 @@ export default function CartCard({ Name }: CartCardProps) {
 					objectFit="cover"
 					className="h-full w-full"
 				/> */}
-			</Box>
-			<Box className="flex-col">
+			</div>
+			<div className="flex-col">
 				<Typography>{Name}</Typography>
 				<LoadingButton
 					// onClick={() => setAddingToCard(true)}
@@ -46,7 +46,7 @@ export default function CartCard({ Name }: CartCardProps) {
 				{added ? "Added To Cart" : "Add To Cart"} */}
 					Remove From Cart
 				</LoadingButton>
-			</Box>
-		</Box>
+			</div>
+		</div>
 	);
 }

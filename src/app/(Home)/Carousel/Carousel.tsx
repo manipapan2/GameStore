@@ -1,9 +1,10 @@
 "use client";
-
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import CarouselSlide from "./CraouselSlide";
 import { DotButton, useDotButton } from "./CarouselDotButton";
+import HaloGameImage from '../../../../Public/assets/6464542.png'
+import AssasinCreedGameImage from '../../../../Public/assets/6275643.png'
 
 const Carousel = () => {
 	const [emblaRef, emblaApi] = useEmblaCarousel();
@@ -19,32 +20,32 @@ const Carousel = () => {
 				<div className="flex h-full w-full">
 					<CarouselSlide
 						name={"Halo"}
-						imageName={"6464542.png"}
+						image={HaloGameImage}
 						rate={"4.5"}
 					/>
 					<CarouselSlide
 						name={"Assasins Creed"}
-						imageName={"6275643.png"}
+						image={AssasinCreedGameImage}
 						rate={"4.5"}
 					/>
 					<CarouselSlide
 						name={"Halo"}
-						imageName={"6464542.png"}
+						image={HaloGameImage}
 						rate={"4.5"}
 					/>
 					<CarouselSlide
 						name={"Assasins Creed"}
-						imageName={"6275643.png"}
+						image={AssasinCreedGameImage}
 						rate={"4.5"}
 					/>
 					<CarouselSlide
 						name={"Halo"}
-						imageName={"6464542.png"}
+						image={HaloGameImage}
 						rate={"4.5"}
 					/>
 					<CarouselSlide
 						name={"Assasins Creed"}
-						imageName={"6275643.png"}
+						image={AssasinCreedGameImage}
 						rate={"4.5"}
 					/>
 				</div>
