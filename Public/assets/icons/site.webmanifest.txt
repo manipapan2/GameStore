@@ -1,6 +1,6 @@
 {
   "name": "Game Store",
-  "short_name": "Game Store",
+  "short_name": "Game Stor",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
