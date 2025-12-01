@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 async function getGames(params: any) {
-	const BACKEND_URL = process.env.BACKEND_URL;
+	const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 	let requestURL: string = `${BACKEND_URL}/api/games?`;
 	const name: string = params.searchParams?.name;
 	const category: string = params.searchParams?.category;

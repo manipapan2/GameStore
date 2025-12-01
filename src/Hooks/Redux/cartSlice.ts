@@ -17,8 +17,12 @@ const cartSlice = createSlice({
       state.game_ids.push(action.payload);
     },
     removeGame: (state, action: PayloadAction<string>) => {
-      const indexOfGame = state.game_ids.indexOf(action.payload)
-      state.game_ids = state.game_ids.splice(indexOfGame, 1)
+      // const indexOfGame = state.game_ids.indexOf(action.payload)
+      // const newGameIds = state.game_ids.splice(indexOfGame, 1)
+      console.log('current array', state.game_ids)
+      console.log('game id', action.payload)
+      // console.log('new array', newGameIds)
+      // state.game_ids = newGameIds
     },
   },
 });

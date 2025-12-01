@@ -9,13 +9,13 @@ import PubgImage from '../../../Public/assets/PubgLogo.png'
 
 export default function Banner() {
 	return (
-		<div className="mb-10 flex w-full flex-col-reverse items-center justify-around rounded-md bg-[var(--CardColor)] lg:flex-row">
-			<div className="p-8">
+		<div className="mb-10 flex w-full p-4 flex-col-reverse items-center justify-around rounded-md bg-[var(--CardColor)] lg:flex-row">
+			<div className="p-6">
 				<Typography
 					variant="h4"
 					sx={{
 						marginBottom: "1.25rem",
-						fontSize: "3rem",
+						fontSize: {xs: "2rem", sm: "2.5rem"},
 						color: "white",
 
 					}}

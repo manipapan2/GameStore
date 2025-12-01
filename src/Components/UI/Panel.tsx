@@ -27,20 +27,20 @@ export default function Panel() {
 
 	return (
 		<nav
-		// bug - fix overflow-y-auto - cross size is facing a bug
-			className="fixed left-0 top-[100px] z-10 flex h-[calc(100%-100px)] overflow-y-auto overflow-hidden w-full flex-col border-b-0 border-l-0 border-r-[2px] border-t-0 border-solid border-[var(--color-accent)] bg-[var(--color-background)] p-5 pt-8 transition-all md:w-1/3 lg:relative lg:!left-0 lg:top-auto lg:h-full lg:w-auto"
+			// bug - fix overflow-y-auto - cross size is facing a bug
+			className="fixed left-0 top-[100px] z-10 flex h-[calc(100%-100px)] w-full flex-col border-b-0 border-l-0 border-r-[2px] border-t-0 border-solid border-[var(--color-accent)] bg-[var(--color-background)] p-5 pt-8 transition-all md:w-1/3 lg:relative lg:!left-0 lg:top-auto lg:h-full lg:max-w-fit max-w-full overflow-y-auto overflow-hidden"
 			style={{
 				left: isPanelOpen ? "0px" : "-100%",
 			}}
 		>
 			<div
-				className="flex items-center pb-4 transition-all"
+				className="hidden items-center pb-4 transition-all lg:flex"
 				style={{
 					paddingRight: isPanelOpen ? "12px" : "0",
 					paddingLeft: isPanelOpen ? "12px" : "0",
 				}}
 			>
-				<div className="hidden h-[50px] lg:flex">
+				<div className="flex h-[50px]">
 					<MdVideogameAsset
 						className="bg-gradient-to-r text-[var(--Purple)]"
 						style={{
@@ -50,10 +50,13 @@ export default function Panel() {
 					/>
 					<Typography
 						variant="h3"
-						className="flex items-center text-white transition-[font-size] duration-150"
 						sx={{
 							marginRight: isPanelOpen ? "16px" : "0",
 							fontSize: isPanelOpen ? "2rem" : "0",
+							display: "flex",
+							alignItems: "center",
+							color: "white",
+							transition: "font-size 150ms",
 						}}
 					>
 						Unity
@@ -61,7 +64,13 @@ export default function Panel() {
 				</div>
 				<IconButton
 					onClick={() => dispatch(togglePanel())}
-					className="hidden items-center justify-center p-3 lg:flex"
+					sx={{
+						display: { xs: "hidden", lg: "flex" },
+						margin: "auto",
+						alignItems: "center",
+						justifyContent: "center",
+						padding: "0.75rem",
+					}}
 				>
 					{isPanelOpen ? (
 						<IoCloseSharp className="text-3xl text-white" />
@@ -70,7 +79,16 @@ export default function Panel() {
 					)}
 				</IconButton>
 			</div>
-			<Typography className="mb-2 w-fit pl-3 pr-3 text-xs font-bold text-white">
+			<Typography
+				sx={{
+					marginBottom: "0.5rem",
+					width: "fit",
+					paddingLeft: "0.75rem",
+					fontSize: "0.75rem",
+					fontWeight: "bold",
+					color: "white",
+				}}
+			>
 				Feeds
 			</Typography>
 			<div className="w-full border-b-[1px] border-slate-600 pb-10">
@@ -114,7 +132,16 @@ export default function Panel() {
 			</div>
 			<hr className="h-[1px] w-full bg-slate-600" />
 			<div className="pb-10 pt-10">
-				<Typography className="mb-2 w-fit pl-3 pr-3 text-xs font-bold text-white">
+				<Typography
+					sx={{
+						marginBottom: "0.5rem",
+						width: "fit",
+						paddingLeft: "0.75rem",
+						fontSize: "0.75rem",
+						fontWeight: "bold",
+						color: "white",
+					}}
+				>
 					Other
 				</Typography>
 				<NavLink
@@ -143,12 +170,17 @@ function NavLink({ href, icon, label, isPanelOpen }: NavLinkProps) {
 	return (
 		<Link
 			href={href}
-			className="mb-1 mt-1 flex w-full items-center rounded-md p-3 text-slate-600 transition-all hover:bg-[var(--Purple)] hover:text-white"
+			className="mb-1 mt-1 flex w-full items-center justify-center rounded-md p-3 text-slate-600 transition-all hover:bg-[var(--Purple)] hover:text-white"
 		>
 			{icon}
 			<Typography
-				className="w-full overflow-hidden font-bold transition-[font-size] duration-150"
-				sx={{ fontSize: isPanelOpen ? "1rem" : "0" }}
+				sx={{
+					fontSize: isPanelOpen ? "1rem" : "0",
+					width: "100%",
+					overflow: "hidden",
+					fontWeight: "bold",
+					transition: "font-size 150ms",
+				}}
 			>
 				{label}
 			</Typography>

@@ -20,7 +20,7 @@ const Game = ({ game }: { game: GameType }) => {
 		useState<boolean>(false);
 	const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
 	const [isGameAddedToCart, setIsGameAddedToCart] = useState<boolean>(game.is_added_to_cart ? true : false);
-
+	const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 	const dispatch = useDispatch();
 	const mockGameIdArray: string[] = [
 		"412354",
@@ -63,7 +63,7 @@ const Game = ({ game }: { game: GameType }) => {
 		mutate: addGameToCart,
 	} = useMutation({
 		mutationFn: () => {
-			return axios.post("/api/games", { game_id: game.id });
+			return axios.post(`${BACKEND_URL}/api/games`, { game_id: game.id });
 		},
 		onSuccess: () => {
 			setIsGameAddedToCart(true);
@@ -78,7 +78,7 @@ const Game = ({ game }: { game: GameType }) => {
 		mutate: removeGameFromCart,
 	} = useMutation({
 		mutationFn: () => {
-			return axios.delete("/api/games", { data: { game_id: game.id } });
+			return axios.delete(`${BACKEND_URL}/api/games`, { data: { game_id: game.id } });
 		},
 		onSuccess: () => {
 			setIsGameAddedToCart(false);
@@ -136,19 +136,6 @@ const Game = ({ game }: { game: GameType }) => {
 
 			<div className="!pointer-events-none relative aspect-[16/8] w-full overflow-hidden rounded-t-md md:aspect-[16/4]">
 				{/* For optimization change scale to background size */}
-				{/* <img
-                    src={`/assets/${game.id}.png`}
-                    className="max-h-full w-full select-none rounded-t-md object-cover"
-                    alt="test"
-                    // width={500}
-                    // height={500}
-                    // quality={100}
-                    // cover
-                    style={{
-                        transform: `scale(${imageScale})`,
-                        opacity: `${1 - (scrollPercentage / 100)}`,
-                    }}
-                /> */}
 				<Image
 					src={`/assets/${game.id}.png`}
 					className="max-h-full w-full select-none rounded-t-md object-cover"
@@ -167,7 +154,7 @@ const Game = ({ game }: { game: GameType }) => {
 				<div className="flex h-fit w-full flex-col items-center justify-between p-2 text-white backdrop-blur-[3px] md:flex-row">
 					<div className="w-full">
 						<h1 className="text-3xl md:text-4xl">{game.name}</h1>
-						<h2 className="mt-2">{game.category}</h2>
+						<h2 className="mt-2 text-slate-500">{game.category}</h2>
 					</div>
 					<div className="mt-2 w-full md:mt-0 md:w-fit md:min-w-80">
 						<Button

@@ -18,7 +18,7 @@ export default function Header() {
 	);
 
 	return (
-		<header className="flex h-[100px] w-full flex-row items-center justify-between border-[1px] border-l-0 border-r-0 border-t-0 border-solid border-[var(--color-accent)] bg-transparent p-8 pl-5 pr-5 shadow-none lg:h-auto lg:justify-end">
+		<header className="flex h-[100px] w-full flex-row items-center justify-between border-[2px] border-l-0 border-r-0 border-t-0 border-solid border-[var(--color-accent)] bg-transparent p-8 pl-5 pr-5 shadow-none lg:h-auto lg:justify-end">
 			<IconButton
 				onClick={() => dispatch(togglePanel())}
 				className="items-center justify-center p-3"
