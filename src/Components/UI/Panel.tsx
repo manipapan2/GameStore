@@ -119,14 +119,14 @@ export default function Panel() {
 					isPanelOpen={isPanelOpen}
 				/>
 				<NavLink
-					href="/download"
+					href="/install"
 					icon={
 						<FaDownload
 							className="min-h-8 min-w-8 transition-[margin] duration-150"
 							style={{ marginRight: isPanelOpen ? "16px" : "0" }}
 						/>
 					}
-					label="Download"
+					label="Install"
 					isPanelOpen={isPanelOpen}
 				/>
 			</div>
